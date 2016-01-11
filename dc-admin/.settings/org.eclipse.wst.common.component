@@ -13,7 +13,7 @@
         <dependent-module archiveName="dc-mapper-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dc-mapper/dc-mapper">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <property name="context-root" value="dc-admin"/>
         <property name="java-output-path" value="/dc-admin/target/classes"/>
+        <property name="context-root" value="dcAdmin"/>
     </wb-module>
 </project-modules>
