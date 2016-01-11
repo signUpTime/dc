@@ -1,0 +1,63 @@
+/* CSS Document */
+
+/* Reset *
+====================================================================*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,table,tr,th,td,embed,object,em,hr,span{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img,abbr{border:0;}
+address,caption,cite,code,dfn,em,h1,h2,h3,h4,h5,h6,strong,th,var{font-style:normal;font-weight:normal;}
+ul{list-style:none;}
+caption,th {text-align:left;}
+div { text-align: left; vertical-align: top; }
+q:before,q:after{content:'';}
+a,ins{text-decoration:none;}
+strong { font-weight: bold; }
+cite { display: block; font-size: 12px; font-style: italic; text-align: right; }
+textarea{ overflow: auto}
+
+/* Global Classes Style
+=====================================================================*/
+.distext { display:none; }
+.clearboth { clear:both;}
+.clearleft { clear:left; }
+.clearright { clear:right; }
+.block{display:block;}
+.right{float:right;}
+.textcenter{text-align:center;}
+
+/*address contact
+=====================================================================*/
+.content{width:100%;overflow:hidden;}
+.address_div{width:96%;margin:20px 20px;overflow:hidden;}
+.address_table{border:1px solid #d3d3d3;width:100%;}
+.address_table td{padding:10px;font-size:14px;color:#666;vertical-align:top;border-top:1px solid #ccc;}
+.address_table td span{padding:5px 0;}
+.address_bg{background:#eee;}
+.teacher_name{color:#4c5ba7;margin-right:10px;}
+a.ann_look{font-size:14px;color:#fff;display:inline-block;padding:0 10px;height:26px;line-height:26px;border-radius:4px;background:#f90;border:1px #f90 solid;color:#ffffff;cursor:pointer;margin-right:10px;}
+a.ann_content{font-size:14px;color:#fff;display:inline-block;padding:0 10px;height:26px;line-height:26px;border-radius:4px;background:#6cb952;border:1px #6cb952 solid;color:#ffffff;cursor:pointer;margin-right:10px;}
+a.ann_name{color:#006699;text-decoration:underline;}
+.stu{overflow:hidden;width:100%;}
+.stu ul{width:100px;margin:10px;background:#f5f5f5;border:1px solid #dcdcdc;float:left;}
+.stu ul li{padding:5px;text-align:center;}
+
+.contact .title{display:block;background:#f5f5f5;height:50px;line-height:50px;border-bottom:1px solid #ccc;padding-left:10px;font-size:14px;color:#4c5ba7;}
+.talk{height:450px;overflow: auto;}
+.talk_me{display:block;margin:10px 10px 20px 10px;color:#666;font-size:14px;}
+.talk_time{display:block;margin-bottom:10px;color:#999999;}
+.talk_time font { margin-right:10px; color:#663aff;}
+.word{height:140px;background:#f5f5f5;border-top:1px solid #bdbdbd;padding:10px;font-size:14px;color:666;}
+.word_cont {height:80px; width:100%; border:none; background:#fff; margin-bottom:5px;}
+.ann_close {float:right;margin:10px;cursor:pointer;}
+.ann_send {float:right;font-size:16px;padding:0 10px;height:35px;line-height:35px;border-radius:4px;background:#f60;border:1px #f60 solid;color:#ffffff;font-weight:bold;cursor:pointer;margin:0 10px;}
+
+.revise{width:300px;height:100px;margin-top:10px;border:1px solid #ccc;}
+.revise .title{display:block;background:#f5f5f5;height:30px;line-height:30px;border-bottom:1px solid #ccc;padding-left:10px;font-size:14px;color:#4c5ba7;}
+.revise_close{float:right;margin:-5px 5px 0 5px;cursor:pointer;}
+.revise_input{margin:10px;width:200px;height:30px;line-height:30px;border:1px solid #ccc;vertical-align:middle;}
+
+
+.message{width:300px;height:150px;position:absolute;right:20px;bottom:0;background:#fff;border:1px solid #ccc;}
+.message .title{display:block;background:#f5f5f5;height:40px;line-height:40px;border-bottom:1px solid #ccc;padding-left:10px;font-size:14px;color:#4c5ba7;}
+.message_close{float:right;margin:5px 10px;cursor:pointer;}
+.message_cont{margin:10px;height:90px;line-height:22px;font-size:12px;color:#666666;overflow-y:auto;}

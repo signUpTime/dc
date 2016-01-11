@@ -1,0 +1,57 @@
+/* CSS Document */
+.content { margin:10px; overflow:hidden; }
+
+.button_continue { height:24px; border-radius:4px; FONT-FAMILY: Verdana, 微软雅黑; font-size: 16px;  background:#498AF2; border:1px #498AF2 solid; color:#ffffff; margin-left:5px; padding-left:5px; padding-right:5px;}
+.button { height:35px; border-radius:4px; FONT-FAMILY: Verdana, 微软雅黑; font-size: 20px;  background:#498AF2; border:1px #498AF2 solid; color:#ffffff; margin-left:5px; padding-left:5px; padding-right:5px;}
+.button_submit { height:32px; border-radius:4px; FONT-FAMILY: Verdana, 微软雅黑; font-size: 16px;  background:#498AF2; border:1px #498AF2 solid; color:#ffffff; margin-left:5px; padding-left:5px; padding-right:5px;}
+.button_cancel { height:35px; border-radius:4px; FONT-FAMILY: Verdana, 微软雅黑; font-size: 20px; background:#EFEFEF; border:1px #cccccc solid;  color:#666; margin-left:5px; padding-left:5px; padding-right:5px;}
+.detail { width:60%;}
+.detail th { width:90px; height:40px; background:#efefef; border-bottom:1px #fff solid; text-indent:10px;}
+.detail td { padding-left:10px; border-bottom:1px #efefef solid; line-height:25px;}
+.detail .input { width:80%; height:25px; border:1px #cccccc solid; FONT-FAMILY: Verdana, 微软雅黑; font-size: 12pt; color:#666666;}
+.detail .input_s { width:100px; height:25px; border:1px #cccccc solid; FONT-FAMILY: Verdana, 微软雅黑; font-size: 12pt; color:#666666;}
+.detail .select { height:30px; margin-top:6px; margin-right:5px;FONT-FAMILY: Verdana, 微软雅黑; font-size: 12pt; }
+
+.teacher_list {border:1px solid #d3d3d3;margin:10px 20px;width:85%; font-size:14px;background:#f1f1f1; overflow:hidden;}
+.teacher_list .list_data{display:block;padding:5px 10px; overflow:hidden;}
+.teacher_list .name_info{font-size:16px;font-weight:bold;color:#4c5ba7;}
+.teacher_list a { margin-left:10px; color:#F60;}
+.teacher_list .teacher_detail { background:#fff; padding:10px; overflow:hidden;}
+.teacher_list .teacher_detail div { border-bottom:1px #f1f1f1 dashed; line-height:30px;overflow:hidden;}
+.teacher_list .teacher_detail font {font-size:14px;font-weight:bold;color:#FF7486;}
+.teacher_list .teacher_detail .font1  {font-size:14px;font-weight:bold;color:#41BFCD;}
+
+.calendar_frame { border:1px #e2e2e2 solid; width:100%;}
+.calendar_frame th { background:#fff; height:26px; text-align:center; border-right:1px #e2e2e2 solid; border-bottom:1px #e2e2e2 solid;}
+.calendar_frame th font { color:#F60;}
+.calendar_frame td { border-right:1px #e2e2e2 solid; border-bottom:1px #e2e2e2 solid; width:14%; vertical-align:top;}
+.calendar_frame .day { height:180px; overflow:auto;}
+.calendar_frame .day h1 { background:#F9F9F9; color:#C2C0C1; height:24px; line-height:24px; font-size:14px; padding-left:10px;}
+.calendar_frame .day h2 { background:#EAEAEA; color:#263143; height:24px; line-height:24px; font-size:14px; padding-left:10px;}
+.calendar_frame .font1 { color:#CCC; line-height:22px; border-bottom:1px #e2e2e2 solid; width:96%; margin: auto; margin-bottom:4px;}
+.calendar_frame .font1 font { color:#CCC; }
+.calendar_frame .font1 .tpye { color:#CCC; margin-left:5px;}
+.calendar_frame .font1 .tpye_course { color:#CCC; margin-left:5px;}
+.calendar_frame .font1 .tpye_student { color:#CCC; margin-left:5px;}
+.calendar_frame .font2 { color:#333333; line-height:22px; border-bottom:1px #E2E2E2 solid; width:96%; margin: auto; margin-bottom:4px;}
+.calendar_frame .font2 font { color:#333333;  }
+.calendar_frame .font2 .tpye { color:#FF7D8C; margin-left:5px;}
+.calendar_frame .font2 .tpye_course { color:#333333; margin-left:5px;}
+.calendar_frame .font2 .tpye_student { color:#498AF2; margin-left:5px;}
+.calendar_frame .add a { color:#6CBA52;}
+.calendar_frame .font3 { color:#6CBA52; line-height:22px; border-bottom:1px #E2E2E2 solid; width:96%; margin: auto; margin-bottom:4px;}
+.calendar_frame .font3 font { margin-right:5px;}
+
+.add_time { width:320px; height:120px; border:1px #41BFCD solid; position: absolute; z-index:99; top:30%; left:40%; background:#ffffff;  }
+.add_time .title {height:30px; background:#41BFCD;}
+.add_time .title h1 {  color:#ffffff; font-size:18px; line-height:30px; text-indent:5px; float:left; width:200px; }
+.add_time .title img { float:right; width:20px; margin-right:5px; margin-top:5px;}
+.add_time .data { line-height:30px; padding-left:10px; font-size:16px;}
+.add_time .data font { color:#999;  margin-right:6px;}
+.add_time .data span { color:#396AB4; font-weight:bold;}
+.add_time .select { height:30px; margin-top:6px; margin-right:5px;FONT-FAMILY: Verdana, 微软雅黑; font-size: 12pt; margin-bottom:10px;}
+.add_time .submit { height:32px; border-radius:4px; FONT-FAMILY: Verdana, 微软雅黑; font-size: 16px;  background:#498AF2; border:1px #498AF2 solid; color:#ffffff; padding-left:5px; padding-right:5px;}
+.add_time .submit_cancel { height:32px; border-radius:4px; FONT-FAMILY: Verdana, 微软雅黑; font-size: 16px; background:#EFEFEF; border:1px #cccccc solid;  color:#666; margin-left:20px; padding-left:5px; padding-right:5px;}
+
+ 
+

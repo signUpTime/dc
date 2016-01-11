@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+  "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>qq</short-name>
+	<uri>http://www.changingedu.com/</uri>
+
+	<tag>
+		<name>writeBookStatus</name>
+		<tag-class>com.qq.common.tag.WriteBookStatusTag</tag-class>
+		<description>print the writeBookStatus's zh_desc; </description>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>writeBookStatus's value</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>writeFormatDate</name>
+		<tag-class>com.qq.common.tag.WriteFormatDateTag</tag-class>
+		<description>print the formatDate's zh_desc; </description>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>formatDate's value</description>
+		</attribute>
+		<attribute>
+			<name>format</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>formatDate's format</description>
+		</attribute>
+	</tag>
+	
+</taglib>

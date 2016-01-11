@@ -1,0 +1,35 @@
+/* CSS Document */
+
+.content { margin:10px; overflow:hidden; }
+.all { width:98%; background:#ffffff; border:1px #41BFCD solid; overflow:hiddenm;margin:10px;}
+.all h1 { margin:0; padding:0;  font-size:14px; font-weight:normal; color:#ffffff; line-height:50px; height:50px; overflow:hidden; margin-bottom:10px;padding-right:10px;}
+.all h1 span { float: left; margin-left:10px; font-size:12pt;}
+.all div {  font-size:13pt; margin-top:20px; margin-bottom:20px;}
+.all font { color:#999999; margin-right:6px; margin-left:10px;}
+.all a { float:right; margin-right:10px;}
+.all A:link { color: #ff6600; text-decoration: none;} 
+.all A:visited { color: #ff6600; text-decoration: none;} 
+.all A:active { color: #ff6600; text-decoration: none;} 
+.all A:hover { color: #ff6600; text-decoration: underline;} 
+.frame_body { width:100%; margin-top:10px;}
+.frame_tea { width:300px; float:left; border:1px solid #CCC; margin-right:15px; margin-bottom:15px;}
+.frame_tea table { width:300px; margin:auto;}
+.frame_tea table .h1 {  font-size:14pt; background:#efefef; height:35px; color:#333333; text-indent:10px;}
+.frame_tea table .h1 a { float:right; margin-right:10px; font-size:12pt;}
+.frame_tea table .h1 A:link { color: #498AF2; text-decoration: none;} 
+.frame_tea table .h1 A:visited { color: #498AF2; text-decoration: none;} 
+.frame_tea table .h1 A:active { color: #498AF2; text-decoration: none;} 
+.frame_tea table .h1 A:hover { color: #498AF2; text-decoration: underline;} 
+.frame_tea table td { font-size:12pt; text-indent:10px; height:30px; color:#333;}
+.frame_tea table td font { color:#999999; margin-right:6px;}
+.frame_tea table td span { color:#F60;}
+.teacher_list {border:1px solid #d3d3d3;margin:10px 20px;width:85%; font-size:14px;background:#f1f1f1; overflow:hidden;}
+.teacher_list .list_data{display:block;padding:5px 10px; overflow:hidden;}
+.teacher_list .name_info{font-size:16px;font-weight:bold;color:#4c5ba7;}
+.teacher_list a { margin-left:10px; color:#F60;}
+.teacher_list .detail { background:#fff; padding:10px; overflow:hidden;}
+.teacher_list .detail div { border-bottom:1px #f1f1f1 dashed; line-height:30px;overflow:hidden;}
+.teacher_list .detail font {font-size:14px;font-weight:bold;color:#FF7486;}
+.teacher_list .detail .font1  {font-size:14px;font-weight:bold;color:#41BFCD;}
+
+

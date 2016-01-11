@@ -1,0 +1,17 @@
+.choosed{display:inline-block;margin:10px 5px;padding:5px 10px;background:#3face7;border:1px solid #3a98f0;color:#fff;cursor:pointer;}
+.choice{display:inline-block;margin:10px 5px;padding:5px 10px;background:#f9f9f9;border:1px solid #ccc;color:#666;cursor:pointer;}
+.time_use{overflow:hidden;margin:5px;border-bottom:1px dotted #ccc;}
+.time_use li{float:left;margin-right:15px;}
+.date_use{display:block;margin:5px;padding:5px;font-size:22px;color:#66CCFF;background:#EEFAFF;}
+.date_num{display:block;padding:5px;border-bottom:1px dotted #ccc;}
+.date_input{vertical-align:middle;width:30px;height:26px;line-height:26px;text-align:center;}
+.date_ok{vertical-align:middle;height:26px;line-height:26px;padding:0 10px;}
+.room_input{vertical-align:middle;width:300px;height:26px;line-height:26px;}
+.upload{padding:5px 20px;font-size:14px;vertical-align:middle;}
+
+.content { margin:10px; overflow:hidden; }
+.content .frame { border:1px #ccc solid; width:100%; font-size:12px;}
+.content .frame th { background:#EAEAEA; height:26px; text-align:center; border-right:1px #ccc solid; border-bottom:1px #ccc solid; height:35px; color:#333;}
+.content .frame th font { color:#F60;}
+.content .frame td { border-right:1px #ccc solid; border-bottom:1px #ccc solid;  vertical-align:top; padding:4px; height:25px; line-height:25px;}
+.content .frame td h1 { font-size:14px; font-weight: bold; color:#06C;}

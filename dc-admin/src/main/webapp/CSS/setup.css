@@ -1,0 +1,20 @@
+/* CSS Document */
+.content { margin:10px;}
+.content .frame { width:260px; float:left; background:#efefef; margin-right:10px; margin-bottom:10px; overflow:hidden; font-size:12pt; }
+.content .frame h1 { margin:0; padding:0;  font-size:18pt; font-weight:normal; color:#ffffff; line-height:45px; height:45px; padding-left:5px; overflow:hidden; margin-bottom:10px;}
+.content .frame h1 span { float:right; margin-top:10px; margin-right:4px;}
+.content .frame font { color:#999999; margin-left:4px; }
+.content .frame td { height:30px;}
+
+.content .frame_body { width:700px; float:left; background:#efefef; margin-right:10px; margin-bottom:10px; overflow:hidden; font-size:12pt; }
+.content .frame_body h1 { margin:0; padding:0;  font-size:18pt; font-weight:normal; color:#ffffff; line-height:45px; height:45px; padding-left:5px; overflow:hidden; margin-bottom:10px;}
+.content .frame_body h1 span { float:right; font-size:12pt; margin-right:10px;}
+.content .frame_body h1 A:link { color: #ffffff; text-decoration: none;} 
+.content .frame_body h1 A:visited { color: #ffffff; text-decoration: none;} 
+.content .frame_body h1 A:active { color: #ffffff; text-decoration: none;} 
+.content .frame_body h1 A:hover { color: #ffffff; text-decoration: underline;} 
+
+.content .frame_body font { color:#999999; margin-left:4px; }
+.content .frame_body td { height:40px;}
+
+.report_frame { width:650px; background:#E6EFF8; margin:auto; margin-top:30px; border:1px #BFCCD2 solid;}

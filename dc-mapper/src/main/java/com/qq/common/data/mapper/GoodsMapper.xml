@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qq.common.data.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.qq.common.domain.goodsVO.GoodsVO" >
+    <id column="id" property="id" />
+    <result column="name" property="name" />
+    <result column="pic" property="pic" />
+    <result column="shop_id" property="shopId" />
+    <result column="price" property="price" />
+    <result column="source_url" property="sourceUrl" />
+    <result column="description" property="description" />
+    <result column="create_time" property="createTime" />
+    <result column="last_update_time" property="lastUpdateTime" />
+    <result column="is_deleted" property="isDeleted" />
+  </resultMap>
+  
+  <sql id="baseSql">
+  	id,name,pic,shop_id,price,source_url,description,create_time,last_update_time,is_deleted
+  </sql>
+  
+  <select id="selectGoodsList" resultMap="BaseResultMap">
+  	SELECT
+  		<include refid="baseSql"></include>
+  	FROM
+  		qq_dingcan.t_goods
+  </select>
+  
+  <select id="selectGoodsCount" resultType="java.lang.Integer" parameterType="com.qq.common.param.foods.FoodsParam">
+  	SELECT
+  		COUNT(1)
+  	FROM
+  		qq_dingcan.t_goods
+  	WHERE
+  		is_deleted=0
+  </select>
+  
+  <select id="queryFoodList" parameterType="com.qq.common.param.foods.FoodsParam" resultMap="BaseResultMap">
+  	SELECT
+  		A.id,A.name,A.pic,A.shop_id,A.price,A.source_url,A.description,A.create_time,A.last_update_time,A.is_deleted,
+  		B.name as shopName
+  	FROM
+  		qq_dingcan.t_goods A
+  	LEFT JOIN
+  		qq_dingcan.t_shop B
+  	ON
+  		A.shop_id = B.id
+  	WHERE
+  		A.is_deleted=0
+  </select>
+  
+</mapper>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qq.common.data.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.qq.common.domain.Order" >
+    <id column="id" property="id" />
+    <result column="user_id" property="userId" />
+    <result column="goods_id" property="goodsId" />
+    <result column="total_price" property="totalPrice" />
+    <result column="status" property="status" />
+    <result column="book_status" property="bookStatus"/>
+    <result column="user_receive_status" property="userReceiveStatus"/>
+    <result column="create_time" property="createTime" />
+    <result column="last_update_time" property="lastUpdateTime" />
+    <result column="is_deleted" property="isDeleted" />
+  </resultMap>
+  
+  <sql id="BaseSql">
+  	id,user_id,goods_id,total_price,status,book_status,user_receive_status,is_Deleted,create_time,last_update_time
+  </sql>
+  
+  <select id="selectOrderByUserAndTime" parameterType="com.qq.common.param.order.OrderParam" resultMap="BaseResultMap">
+  	SELECT
+  		<include refid="BaseSql"></include>
+  	FROM
+  		qq_dingcan.t_order
+  	WHERE
+  		user_id = #{userId}
+  	AND
+  		<![CDATA[create_time >= #{startTime}]]>  
+  	AND
+  		<![CDATA[create_time <= #{endTime}]]>
+  	AND
+  		is_deleted = 0
+  </select>
+  
+  <insert id="insertOrder" parameterType="com.qq.common.param.order.OrderParam">
+  	INSERT INTO
+  		qq_dingcan.t_order
+  		(
+  			user_id,goods_id,total_price,create_time
+  		)
+  	VALUES
+  		(
+  			#{userId},#{goodsId},#{totalPrice},NOW()
+  		)
+  </insert>
+  
+  <update id="deleteOrder" parameterType="java.lang.Long">
+  	UPDATE
+  		qq_dingcan.t_order
+	SET
+		is_deleted = 1
+	WHERE
+		id = #{orderId}  	
+  </update>
+  
+  <update id="updateOrderFood" parameterType="com.qq.common.param.order.OrderParam">
+  	UPDATE
+  		qq_dingcan.t_order
+  	SET
+  		goods_id = #{goodsId}
+  	WHERE
+  		id = #{id}
+  </update>
+  
+  <select id="queryTodayOrderFoodList" parameterType="com.qq.common.param.order.OrderParam" resultType="com.qq.common.domain.goodsVO.OrderFoodVO">
+  	SELECT
+  		A.goods_id goodsId,A.book_status bookStatus,sum(1) count,
+  		B.name goodsName,B.source_url goodsSource,
+  		C.name shopName,C.source_url shopSource
+  	FROM
+  		qq_dingcan.t_order A
+  	LEFT JOIN
+  		qq_dingcan.t_goods B ON A.goods_id = B.id
+  	LEFT JOIN
+  		qq_dingcan.t_shop C ON B.shop_id = C.id
+  	WHERE
+  		1=1
+  	AND
+  		A.is_deleted = 0
+  	<if test="bookStatus != -1">
+  		AND
+  			A.book_status = #{bookStatus}
+  	</if>
+  	<if test="goodsName != null and goodsName != '' ">
+  		AND
+  			B.name LIKE CONCAT('%',#{goodsName},'%')  
+  	</if>
+  	<if test="shopName != null and shopName != '' "> 
+  		AND
+  			C.name LIKE CONCAT('%',#{shopName},'%')
+  	</if>
+  	<if test="startTime != null and startTime != '' ">
+	  	AND
+	  		<![CDATA[A.create_time >= #{startTime}]]>  
+  	</if>
+  	<if test="endTime != null and endTime != '' ">
+	  	AND
+	  		<![CDATA[A.create_time <= #{endTime}]]>
+  	</if>
+  	GROUP BY
+  		A.goods_id
+  </select>
+  
+  <update id="updateTodayOrderBookStatus" parameterType="com.qq.common.param.order.OrderParam">
+  	UPDATE
+  		qq_dingcan.t_order
+  	SET
+  		book_status = #{bookStatus}
+  	WHERE
+  		is_deleted = 0
+  	AND
+  		goods_id IN
+  	<foreach collection="goodsIds" item="goodsId" open="(" separator="," close=")">
+  		#{goodsId}
+  	</foreach>
+  	AND
+  		<![CDATA[create_time >= #{startTime}]]>  
+  	AND
+  		<![CDATA[create_time <= #{endTime}]]>
+  </update>
+  
+  <select id="queryTodayOrderUserList"  parameterType="com.qq.common.param.order.OrderParam" resultType="com.qq.common.domain.goodsVO.OrderUserVO">
+  	SELECT
+  		A.id orderId,A.create_time createTime,A.status,
+  		B.id userId,B.name userName,B.department,
+  		C.name goodsName,
+  		D.name shopName
+  	FROM
+  		qq_dingcan.t_order A
+  	LEFT JOIN
+  		qq_dingcan.t_user B ON A.user_id = B.id
+  	LEFT JOIN
+  		qq_dingcan.t_goods C ON A.goods_id = C.id
+  	LEFT JOIN
+  		qq_dingcan.t_shop D ON C.shop_id = D.id
+  	WHERE
+  		A.is_deleted = 0
+  	<if test="status != -1">
+  		AND
+	  		A.status = #{status}
+  	</if>
+  	<if test="name != null and name !=''">
+  		AND
+  			B.name LIKE CONCAT('%',#{name},'%')  
+  	</if>
+  	<if test="department != null and department !='' ">
+  		AND
+  			B.department LIKE CONCAT('%',#{department},'%')  
+  	</if>
+  	<if test="goodsName != null and goodsName !=''">
+  		AND
+  			C.name LIKE CONCAT('%',#{goodsName},'%') 
+  	</if>
+  	<if test="startTime != null and startTime != '' ">
+	  	AND
+	  		<![CDATA[A.create_time >= #{startTime}]]>  
+  	</if>
+  	<if test="endTime != null and endTime != '' ">
+	  	AND
+	  		<![CDATA[A.create_time <= #{endTime}]]>
+  	</if>
+  	ORDER BY
+  		A.create_time
+  	DESC
+  </select>
+  
+  <update id="updateOrderTakeFoodStatus"  parameterType="com.qq.common.param.order.OrderParam">
+  	UPDATE
+  		qq_dingcan.t_order
+  	SET
+  		status = #{status}
+  	WHERE
+  		is_deleted = 0
+  	AND
+  		id IN
+  	<foreach collection="orderIds" item="orderId" open="(" separator="," close=")">
+  		#{orderId}
+  	</foreach>
+  </update>
+  
+  <select id="queryMyTodayOrder" parameterType="com.qq.common.param.order.OrderParam" resultMap="BaseResultMap">
+  	SELECT
+  		<include refid="BaseSql"></include>
+  	FROM 
+  		qq_dingcan.t_order
+  	WHERE
+  		is_deleted = 0
+  	AND
+  		user_id = #{userId}
+  	AND
+  		<![CDATA[create_time >= #{startTime}]]>  
+  	AND
+  		<![CDATA[create_time <= #{endTime}]]>
+  </select>
+  
+  
+  
+</mapper>

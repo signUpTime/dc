@@ -1,0 +1,66 @@
+/* CSS Document */
+
+/* Reset *
+====================================================================*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,table,tr,th,td,embed,object,em,hr,span{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img,abbr{border:0;}
+address,caption,cite,code,dfn,em,h1,h2,h3,h4,h5,h6,strong,th,var{font-style:normal;font-weight:normal;}
+ul{list-style:none;}
+caption,th {text-align:left;}
+div { text-align: left; vertical-align: top; }
+q:before,q:after{content:'';}
+a,ins{text-decoration:none;}
+strong { font-weight: bold; }
+cite { display: block; font-size: 12px; font-style: italic; text-align: right; }
+textarea{ overflow: auto}
+
+/* Global Classes Style
+=====================================================================*/
+.distext { display:none; }
+.clearboth { clear:both;}
+.clearleft { clear:left; }
+.clearright { clear:right; }
+.block{display:block;}
+.right{float:right;}
+.textorg{color:#f60;}
+
+/*Order
+=====================================================================*/
+.content{width:100%;overflow:hidden;}
+h1{font-size:18px;padding:5px 10px;display:inline-block;margin:10px 20px;background:#0a73aa;color:#fff;font-weight:bold;}
+.order_table{border:1px solid #d3d3d3;margin:0px 10px 10px 10px; width:95%;}
+.order_table td{border:1px solid #d3d3d3;padding:10px;font-size:14px;color:#666;vertical-align:top;}
+.order_table td span{padding:5px 0;}
+.order_time{font-size:20px;color:#f60;font-weight:bold;display:block;}
+.order_name{font-size:16px;font-weight:bold;color:#4c5ba7;display:block;}
+.order_teacher{color:#4c5ba7;margin-right:20px;}
+.order_teacher_choose{border-top:1px solid #d3d3de;}
+.order_accept{font-size:16px;padding:0 10px;height:35px;line-height:35px;border-radius:4px;background:#f90;border:1px #f90 solid;color:#ffffff;font-weight:bold;cursor:pointer;margin:0 10px;}
+.order_no{font-size:16px;padding:0 10px;height:35px;line-height:35px;border-radius:4px;background:#ccc;border:1px #ccc solid;color:#ffffff;font-weight:bold;cursor:pointer;margin:0 10px;}
+.order_content{font-size:16px;padding:0 10px;height:35px;line-height:35px;border-radius:4px;background:#7dd16d;border:1px #7dd16d;color:#ffffff;font-weight:bold;cursor:pointer;}
+h2{font-size:14px;margin:5px 20px;color:#a3a3a3;}
+.history_order{border:1px solid #d3d3d3;margin:10px 20px;width:96%;font-size:14px;background:#f1f1f1;}
+.history_order .order_list{display:block;padding:5px 10px;}
+.history_order .name_info{font-size:16px;font-weight:bold;color:#4c5ba7;}
+a.choose_link{font-size:14px;font-weight:bold;text-decoration:underline;}
+
+.order_second { width:96%; border:1px #d3d3d3 solid; overflow:hidden; padding:4px; margin-bottom:6px;}
+.order_second span{ padding:3px 0; font-size:14px; color:#666;}
+.order_second .order_time{font-size:20px;color:#f60;font-weight:bold;display:block;}
+.order_second .order_name{font-size:16px;font-weight:bold;color:#4c5ba7;display:block;}
+.order_second .order_teacher{color:#4c5ba7;margin-right:20px;}
+.order_second .order_teacher_choose{border-top:1px solid #d3d3de;}
+.order_second .order_accept{font-size:16px;padding:0 10px;height:30px;line-height:30px;border-radius:4px;background:#f90;border:1px #f90 solid;color:#ffffff;font-weight:bold;cursor:pointer;margin:0 10px;}
+.order_second .order_no{font-size:16px;padding:0 10px;height:33px;line-height:33px;border-radius:4px;background:#ccc;border:1px #ccc solid;color:#ffffff;font-weight:bold;cursor:pointer;margin:0 10px;}
+.order_second .order_content{font-size:16px;padding:0 10px;height:35px;line-height:35px;border-radius:4px;background:#7dd16d;border:1px #7dd16d;color:#ffffff;font-weight:bold;cursor:pointer;}
+.order_second .order_button { display:block;text-align:right;}
+.order_second .phone{font-size:16px;font-weight:bold;color:#4c5ba7;display:block;}
+.order_second textarea { width:100%; height:80px; border:1px #999 solid;font-size:14px; }
+.order_left { width:60%; float:left;}
+.order_right { width:40%; float:right; }
+.order_title { font-size:18px; color:#FF6600; font-weight:bold; padding-left:10px; line-height:35px; height:35px;}
+.order_second_title { font-size:18px; color:#4c5ba7; font-weight:bold; line-height:35px; height:35px;}
+.order_second_top {text-align:right; height:35px; line-height:35px; padding-right:10px;}
+.order_second_top a { color:#f60; font-size: 16px;}
+
