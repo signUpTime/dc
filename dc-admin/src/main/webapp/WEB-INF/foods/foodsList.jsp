@@ -43,21 +43,21 @@
 				</div>
 				<div style="margin-top: 8px;margin-left:14px; float:left">
 					<span title="${result.description}" style="cursor:pointer;"><h3 ><b>${result.name}</b></h3></span>
-					<%-- <div style="color: red;margin-top:40px;">
+					<%--  <div style="color: red;margin-top:40px;">
 						<h3><b>￥${result.price}</b></h3> 
 					</div> --%>
 				</div>
 				<div style="margin-top:8px;margin-right:14px;float:right;">
 					<span ><h3><b>${result.shopName}</b></h3></span>
-					<div style="margin-top:35px;">
-					<c:choose>
-						<c:when test="${result.id == myTodayOrder.goodsId}">
-							<input type="button" name="food" onclick="cancelOrder(${myTodayOrder.id})" price="${result.price}" checked="checked" value="取消" class="button_cancel" />
-						</c:when>
-						<c:otherwise>
-							<input type="button" name="${result.id}" onclick="orderFood(this)" price="${result.price}" value="订餐" class="button"/>
-						</c:otherwise>
-					</c:choose>
+					<div style="margin-top:35px;margin-right:5px;float:right;">
+						<c:choose>
+							<c:when test="${result.id == myTodayOrder.goodsId}">
+								<input type="button" name="food" onclick="cancelOrder(${myTodayOrder.id})" price="${result.price}" checked="checked" value="取消" class="button_cancel" />
+							</c:when>
+							<c:otherwise>
+								<input type="button" name="${result.id}" onclick="orderFood(this)" price="${result.price}" value="订餐" class="button"/>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
