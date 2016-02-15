@@ -20,6 +20,7 @@
 	<script src="<%=request.getContextPath()%>/js/layer/extend/layer.ext.js<%=System.getProperty("version")%>"></script>
 	<script src="<%=request.getContextPath()%>/js/public.js<%=System.getProperty("version")%>" type="text/javascript" ></script>
 	<script src="<%=request.getContextPath()%>/js/validator.js<%=System.getProperty("version")%>" type="text/javascript" ></script>
+	<script src="<%=request.getContextPath()%>/js/ajaxfileupload.js<%=System.getProperty("version")%>" type="text/javascript"></script>
 <!-- 	easyui -->
 <%-- <script src="<%=request.getContextPath()%>/js/easyui/jquery.easyui.min.js<%=System.getProperty("version")%>" type="text/javascript" ></script> --%>
 </head>

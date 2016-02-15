@@ -46,6 +46,48 @@
   		A.shop_id = B.id
   	WHERE
   		A.is_deleted=0
+  	<if test="foodsName != null and foodsName != ''">
+  		AND
+  			A.name LIKE CONCAT("%",#{foodsName},"%")
+  	</if>
+  	<if test="shopName != null and shopName != ''">
+  		AND
+  			B.name LIKE CONCAT("%",#{shopName},"%")
+  	</if>
+  	ORDER BY
+  		A.create_time DESC
   </select>
+  
+  <select id="selectFoodById" resultMap="BaseResultMap">
+  	SELECT
+  		A.id,A.name,A.pic,A.shop_id,A.price,A.source_url,A.description,A.create_time,A.last_update_time,A.is_deleted,
+  		B.name as shopName
+  	FROM
+  		qq_dingcan.t_goods A
+  	LEFT JOIN
+  		qq_dingcan.t_shop B
+  	ON
+  		A.shop_id = B.id
+  	WHERE
+  		A.id = #{id}
+  </select>
+  
+  <insert id="insertGoods" parameterType="com.qq.common.domain.Goods">
+  	INSERT INTO 
+  		qq_dingcan.t_goods(name,pic,shop_id,price,source_url,description,last_update_time,create_time)
+  	VALUES(#{name},#{pic},#{shopId},#{price},#{sourceUrl},#{description},NOW(),NOW())
+  </insert>
+  
+  <update id="deleteFoods">
+  	UPDATE
+  		qq_dingcan.t_goods
+  	SET
+  		is_deleted=1
+  	WHERE
+  		id IN
+  	<foreach collection="ids" item="id" open="(" separator="," close=")">
+  		#{id}
+  	</foreach>
+  </update>
   
 </mapper>

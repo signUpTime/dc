@@ -3,11 +3,14 @@ package com.qq.common.domain;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class Shops {
+public class Shop {
 	private int id;
 	private String name;
 	private String address;
-	private String desc;
+	private String description;
+	private String sourceUrl;
+	private String phone;
+	private int isDeleted;
 	private Timestamp lastUpdateTime;
 	private Date createTime;
 	public int getId() {
@@ -28,11 +31,11 @@ public class Shops {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return description;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public Timestamp getLastUpdateTime() {
 		return lastUpdateTime;
@@ -46,6 +49,23 @@ public class Shops {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	
+	public int getIsDeleted() {
+		return isDeleted;
+	}
+	public void setIsDeleted(int isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+	public String getSourceUrl() {
+		return sourceUrl;
+	}
+	public void setSourceUrl(String sourceUrl) {
+		this.sourceUrl = sourceUrl;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	
 }

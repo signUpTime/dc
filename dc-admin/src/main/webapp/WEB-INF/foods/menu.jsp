@@ -20,6 +20,16 @@
 							</ul>
 						</li>
 					</c:if>
+					<c:if test="${user.isAdmin == 1}">
+						<li class="title">餐品管理
+							<ul class="list">
+								<li><a href="<%=request.getContextPath()%>/foods/toFoodsAdminManage.do" target="contentpage">餐品列表</a></li>
+							</ul>
+							<ul class="list">
+								<li><a href="<%=request.getContextPath()%>/shop/toShopManage.do" target="contentpage">商家列表</a></li>
+							</ul>
+						</li>
+					</c:if>
 				</ul>
 			</td>
 		</tr>

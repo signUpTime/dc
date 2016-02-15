@@ -9,10 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.qq.business.service.IFoodsService;
 import com.qq.business.service.IOrderService;
+import com.qq.common.domain.Goods;
 import com.qq.common.domain.Order;
 import com.qq.common.domain.ResultDO;
 import com.qq.common.domain.User;
@@ -47,7 +50,7 @@ public class FoodsManageController {
 		return new ModelAndView("/WEB-INF/foods/foodsManage.jsp");
 	}
 	
-	@RequestMapping("/queryFoodsList")
+	@RequestMapping("/queryFoodsList.do")
 	public ModelAndView queryFoodsList(@RequestBody FoodsParam param,ModelMap modelMap,HttpServletRequest request) {
 		ResultDO<List<GoodsVO>> result = new ResultDO<List<GoodsVO>>();
 		ResultDO<Order> myTodayOrder = new ResultDO<Order>();
@@ -61,6 +64,50 @@ public class FoodsManageController {
 		modelMap.addAttribute("totalPageNum", result.getTotalPage());
 		modelMap.addAttribute("currentPageNum", result.getCurrentPage());
 		return new ModelAndView("/WEB-INF/foods/foodsList.jsp");
+	}
+	
+	@RequestMapping("/toFoodsAdminManage.do")
+	public ModelAndView toFoodsAdminManage() {
+		return new ModelAndView("/WEB-INF/foods/foodsAdminManage.jsp");
+	}
+	
+	@RequestMapping("/queryAdminFoodsList.do")
+	public ModelAndView queryAdminFoodsList(ModelMap modelMap,@RequestBody FoodsParam param) {
+		ResultDO<List<GoodsVO>> result = new ResultDO<List<GoodsVO>>();
+		result = foodsService.queryFoodsList(param);
+		modelMap.addAttribute("foodList", result.getModel());
+		return new ModelAndView("/WEB-INF/foods/foodAdminList.jsp");
+	}
+	
+	@RequestMapping("/toEditFoodInfo.do")
+	public ModelAndView toEditFoodInfo(ModelMap modelMap,int id){
+		ResultDO<GoodsVO> result = new ResultDO<GoodsVO>();
+		result = foodsService.selectFoodInfo(id);
+		modelMap.addAttribute("food", result.getModel());
+		return new ModelAndView("/WEB-INF/foods/editFood.jsp");
+	}
+	
+	@RequestMapping("/toAddFoodInfo.do")
+	public ModelAndView toAddFoodInfo() {
+		return new ModelAndView("/WEB-INF/foods/addFood.jsp");
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@RequestMapping("/addFood.do")
+	@ResponseBody
+	public ResultDO addFoodInfo(@RequestBody Goods goods) {
+		ResultDO resultDO = new ResultDO();
+		resultDO = foodsService.addFoods(goods);
+		return resultDO;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@RequestMapping("/deleteFoods.do")
+	@ResponseBody
+	public ResultDO deleteFood(@RequestParam String goodsIds) {
+		ResultDO resultDO = new ResultDO();
+		resultDO = foodsService.deleteFoods(goodsIds);
+		return resultDO;
 	}
 	
 }
