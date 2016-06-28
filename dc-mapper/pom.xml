@@ -131,10 +131,16 @@
 		<groupId>dom4j</groupId>
 		<artifactId>dom4j</artifactId>
 	</dependency>
-	<dependency>
+	<!-- <dependency>
 		<groupId>jaxen</groupId>
 		<artifactId>jaxen</artifactId>
-	</dependency>
+		<exclusions>
+			<exclusion>
+				<groupId></groupId>
+				<artifactId></artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency> -->
 	<dependency>
 		<groupId>com.github.fernandospr</groupId>
 		<artifactId>javapns-jdk16</artifactId>
