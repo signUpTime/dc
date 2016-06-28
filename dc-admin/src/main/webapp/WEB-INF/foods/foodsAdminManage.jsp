@@ -13,8 +13,10 @@
           <tr>
             <td nowrap="nowrap" class="left">
             	<font>当前位置：</font>点餐-餐品管理-餐品列表
-            	<input type="button" class="button" value="删除" onclick="deleteFoods()"/>
             	<input type="button" class="button" value="新增" onclick="toAddFood()"/>
+            	<input type="button" class="button" value="删除" onclick="deleteFoods()"/>
+            	<input type="button" class="button" value="上架" onclick="enableFood()"/>
+            	<input type="button" class="button" value="下架" onclick="disableFood()"/>
             </td>
             <td nowrap="nowrap" class="right">
             	商家:
@@ -121,6 +123,75 @@ function requestDeleteFoods(goodsIds) {
 	});
 }
 
+function enableFood(){
+	var checkedBoxes = $("input[type='checkbox']:checked");
+	var goodsIds = "";
+	if(checkedBoxes.length > 0) {
+		for(var i=0;i<checkedBoxes.length-1;i++) {
+			var goodsId = $(checkedBoxes[i]).val();
+			if(goodsId !='') {
+				goodsIds += goodsId+",";
+			}
+		}
+		var lastGoodsId = $(checkedBoxes[checkedBoxes.length-1]).val();
+		if(lastGoodsId != '') {
+			goodsIds += lastGoodsId ;
+		}
+	} else {
+		alert("请选择餐品！")
+		return;
+	}
+	$.ajax({
+		url : path + "/foods/enableFoods.do?goodsIds=" + goodsIds,
+		type : "post",
+		dataType : "json",
+		success : function(data) {
+			if(data.result == true) {
+				layer.closeAll();
+				query(1);
+			} else {
+				if(data.resultMsg) {
+					alert(data.resultMsg);
+				}
+			}
+		}
+	});
+}
+
+function disableFood(){
+	var checkedBoxes = $("input[type='checkbox']:checked");
+	var goodsIds = "";
+	if(checkedBoxes.length > 0) {
+		for(var i=0;i<checkedBoxes.length-1;i++) {
+			var goodsId = $(checkedBoxes[i]).val();
+			if(goodsId !='') {
+				goodsIds += goodsId+",";
+			}
+		}
+		var lastGoodsId = $(checkedBoxes[checkedBoxes.length-1]).val();
+		if(lastGoodsId != '') {
+			goodsIds += lastGoodsId ;
+		}
+	} else {
+		alert("请选择餐品！")
+		return;
+	}
+	$.ajax({
+		url : path + "/foods/disableFoods.do?goodsIds=" + goodsIds,
+		type : "post",
+		dataType : "json",
+		success : function(data) {
+			if(data.result == true) {
+				layer.closeAll();
+				query(1);
+			} else {
+				if(data.resultMsg) {
+					alert(data.resultMsg);
+				}
+			}
+		}
+	});
+}
 
 </script>
 </html>

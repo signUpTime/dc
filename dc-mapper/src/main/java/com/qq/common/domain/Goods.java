@@ -15,6 +15,7 @@ public class Goods {
 	private Timestamp lastUpdateTime;
 	private Date createTime;
 	private int isDeleted;
+	private int isUnderShelf;
 	
 	public int getId() {
 		return id;
@@ -76,6 +77,11 @@ public class Goods {
 	public void setIsDeleted(int isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-	
+	public int getIsUnderShelf() {
+		return isUnderShelf;
+	}
+	public void setIsUnderShelf(int isUnderShelf) {
+		this.isUnderShelf = isUnderShelf;
+	}
 	
 }

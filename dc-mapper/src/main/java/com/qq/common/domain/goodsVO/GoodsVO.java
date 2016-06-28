@@ -12,5 +12,15 @@ public class GoodsVO extends Goods{
 		this.shopName = shopName;
 	}
 	
+	private String picName;
+	
+	public String getPicName() {
+		return picName;
+	}
+
+	public void setPicName(String picName) {
+		this.picName = picName;
+	}
+	
 	
 }

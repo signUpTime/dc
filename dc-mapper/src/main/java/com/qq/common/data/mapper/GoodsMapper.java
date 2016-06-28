@@ -14,10 +14,18 @@ public interface GoodsMapper {
 	public int selectGoodsCount(FoodsParam param);
 
 	public List<GoodsVO> queryFoodList(FoodsParam param);
+	
+	public List<GoodsVO> queryAdminFoodList(FoodsParam param);
 
 	public GoodsVO selectFoodById(int id);
 
 	public void insertGoods(Goods goods);
+	
+	public void editGood(Goods goods);
 
 	public void deleteFoods(@Param("ids")String[] ids);
+	
+	public void enableFoods(@Param("ids")String[] ids);
+	
+	public void disableFoods(@Param("ids")String[] ids);
 }

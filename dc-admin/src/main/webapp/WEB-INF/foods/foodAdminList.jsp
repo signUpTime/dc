@@ -19,7 +19,8 @@
 				<th>商家</th>
 				<th>价钱</th>
 				<th>创建时间</th>
-				<!-- <th>操作</th> -->
+				<th>状态</th>
+				<th>操作</th>
 			</tr>
 			<c:if test="${foodList == null || fn:length(foodList) == 0}">
 				<tr bgcolor="#FFFFFF">
@@ -28,15 +29,30 @@
 				</tr>
 			</c:if>
 			<c:forEach items="${foodList}" var="result" varStatus="loop">
-				<tr align="center">
+					<c:choose>
+						<c:when test="${result.isUnderShelf == 0}">
+							<tr align="center">
+						</c:when>
+						<c:otherwise>
+							<tr align="center" style="background-color:#C0C0C0;font-style:italic">
+						</c:otherwise>
+					</c:choose>
 					<td width="50px" ><input type="checkbox" value="${result.id}" /></td>
 					<td><a href="${result.sourceUrl}" style="color:black;">${result.name}</a></td>
 					<td>${result.shopName}</td>
 					<td>${result.price}</td>
 					<td><qqtag:writeFormatDate value="${result.createTime}" format="yyyy-MM-dd HH:mm:ss"></qqtag:writeFormatDate></td>
-					<%-- <td>
+					<c:choose>
+						<c:when test="${result.isUnderShelf == 0}">
+							<td>已上架</td>
+						</c:when>
+						<c:otherwise>
+							<td>已下架</td>
+						</c:otherwise>
+					</c:choose>
+					<td>
 						<span><a href="javascript:void(0);" onclick="eidtFoodInfo(${result.id})">编辑</a></span>
-					</td> --%>
+					</td>
 				</tr>
 			</c:forEach>
 		</table>

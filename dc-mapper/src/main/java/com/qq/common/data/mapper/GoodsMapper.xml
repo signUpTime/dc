@@ -11,11 +11,11 @@
     <result column="description" property="description" />
     <result column="create_time" property="createTime" />
     <result column="last_update_time" property="lastUpdateTime" />
-    <result column="is_deleted" property="isDeleted" />
+    <result column="is_under_shelf" property="isUnderShelf" />
   </resultMap>
   
   <sql id="baseSql">
-  	id,name,pic,shop_id,price,source_url,description,create_time,last_update_time,is_deleted
+  	id,name,pic,shop_id,price,source_url,description,create_time,last_update_time,is_under_shelf,is_deleted
   </sql>
   
   <select id="selectGoodsList" resultMap="BaseResultMap">
@@ -36,7 +36,33 @@
   
   <select id="queryFoodList" parameterType="com.qq.common.param.foods.FoodsParam" resultMap="BaseResultMap">
   	SELECT
-  		A.id,A.name,A.pic,A.shop_id,A.price,A.source_url,A.description,A.create_time,A.last_update_time,A.is_deleted,
+  		A.id,A.name,A.pic,A.shop_id,A.price,A.source_url,A.description,A.create_time,A.last_update_time,A.is_under_shelf,
+  		B.name as shopName
+  	FROM
+  		qq_dingcan.t_goods A
+  	LEFT JOIN
+  		qq_dingcan.t_shop B
+  	ON
+  		A.shop_id = B.id
+  	WHERE
+  		A.is_under_shelf=0
+  	AND
+  		A.is_deleted=0
+  	<if test="foodsName != null and foodsName != ''">
+  		AND
+  			A.name LIKE CONCAT("%",#{foodsName},"%")
+  	</if>
+  	<if test="shopName != null and shopName != ''">
+  		AND
+  			B.name LIKE CONCAT("%",#{shopName},"%")
+  	</if>
+  	ORDER BY
+  		A.create_time DESC
+  </select>
+  
+  <select id="queryAdminFoodList" parameterType="com.qq.common.param.foods.FoodsParam" resultMap="BaseResultMap">
+  	SELECT
+  		A.id,A.name,A.pic,A.shop_id,A.price,A.source_url,A.description,A.create_time,A.last_update_time,A.is_under_shelf,
   		B.name as shopName
   	FROM
   		qq_dingcan.t_goods A
@@ -55,12 +81,12 @@
   			B.name LIKE CONCAT("%",#{shopName},"%")
   	</if>
   	ORDER BY
-  		A.create_time DESC
+  		A.is_under_shelf ASC
   </select>
   
   <select id="selectFoodById" resultMap="BaseResultMap">
   	SELECT
-  		A.id,A.name,A.pic,A.shop_id,A.price,A.source_url,A.description,A.create_time,A.last_update_time,A.is_deleted,
+  		A.id,A.name,A.pic,A.shop_id,A.price,A.source_url,A.description,A.create_time,A.last_update_time,A.is_under_shelf,
   		B.name as shopName
   	FROM
   		qq_dingcan.t_goods A
@@ -71,18 +97,56 @@
   	WHERE
   		A.id = #{id}
   </select>
-  
+    
   <insert id="insertGoods" parameterType="com.qq.common.domain.Goods">
   	INSERT INTO 
   		qq_dingcan.t_goods(name,pic,shop_id,price,source_url,description,last_update_time,create_time)
   	VALUES(#{name},#{pic},#{shopId},#{price},#{sourceUrl},#{description},NOW(),NOW())
   </insert>
   
+  <update id="editGood" parameterType="com.qq.common.domain.Goods">
+  	UPDATE 
+  		qq_dingcan.t_goods
+  	SET
+  		name=#{name},
+  		price=#{price},
+  		shop_id=#{shopId},
+  		pic=#{pic},
+  		source_url=#{sourceUrl},
+  		description=#{description},
+  		last_update_time=NOW()
+  	WHERE
+  		id = #{id}
+  </update>
   <update id="deleteFoods">
   	UPDATE
   		qq_dingcan.t_goods
   	SET
   		is_deleted=1
+  	WHERE
+  		id IN
+  	<foreach collection="ids" item="id" open="(" separator="," close=")">
+  		#{id}
+  	</foreach>
+  </update>
+  
+  <update id="enableFoods">
+  	UPDATE
+  		qq_dingcan.t_goods
+  	SET
+  		is_under_shelf=0
+  	WHERE
+  		id IN
+  	<foreach collection="ids" item="id" open="(" separator="," close=")">
+  		#{id}
+  	</foreach>
+  </update>
+  
+  <update id="disableFoods">
+  	UPDATE
+  		qq_dingcan.t_goods
+  	SET
+  		is_under_shelf=1
   	WHERE
   		id IN
   	<foreach collection="ids" item="id" open="(" separator="," close=")">

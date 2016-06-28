@@ -81,23 +81,37 @@
 		} */
 		if (url.length > 0) {
 			var path = $("#path").val();
+// 			$.ajaxFileUpload({
+// 						url : path + "/common/uploadPicture.do",
+// 						secureuri : false,
+// 						fileElementId : obj.id,
+// 						dataType : "json",
+// 						success : function(data, status) {
+// 							$("#foodPic").attr('src',picLoc+data.picName);	
+// 							$("#picName").val(data.picName);
+// 							$("#imageArea").show();
+// 						},
+// 						error : function(data, status, e) {
+// 							/* if (str == 'titleImg') {
+// 								titleNum = titleNum - 1;
+// 							} */
+// 							alert(e);
+// 						}
+// 					})
 			$.ajaxFileUpload({
-						url : path + "/common/uploadPicture.do",
-						secureuri : false,
-						fileElementId : obj.id,
-						dataType : "json",
-						success : function(data, status) {
-							$("#foodPic").attr('src',picLoc+data.picName);	
-							$("#picName").val(data.picName);
-							$("#imageArea").show();
-						},
-						error : function(data, status, e) {
-							/* if (str == 'titleImg') {
-								titleNum = titleNum - 1;
-							} */
-							alert(e);
-						}
-					})
+				url : path + "/common/uploadMultimediaPicture.do?imageChannel=pic",
+				secureuri : false,
+				fileElementId : obj.id,
+				dataType : "json",
+				success : function(data, status) {
+					$("#foodPic").attr('src',data.imgUrl);	
+					$("#picName").val(data.imagePath);
+					$("#imageArea").show();
+				},
+				error : function(data, status, e) {
+					alert(e);
+				}
+			})
 			return true;
 		} else {
 			return false;

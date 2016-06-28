@@ -74,7 +74,7 @@ public class FoodsManageController {
 	@RequestMapping("/queryAdminFoodsList.do")
 	public ModelAndView queryAdminFoodsList(ModelMap modelMap,@RequestBody FoodsParam param) {
 		ResultDO<List<GoodsVO>> result = new ResultDO<List<GoodsVO>>();
-		result = foodsService.queryFoodsList(param);
+		result = foodsService.queryAdminFoodsList(param);
 		modelMap.addAttribute("foodList", result.getModel());
 		return new ModelAndView("/WEB-INF/foods/foodAdminList.jsp");
 	}
@@ -107,6 +107,33 @@ public class FoodsManageController {
 	public ResultDO deleteFood(@RequestParam String goodsIds) {
 		ResultDO resultDO = new ResultDO();
 		resultDO = foodsService.deleteFoods(goodsIds);
+		return resultDO;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@RequestMapping("/enableFoods.do")
+	@ResponseBody
+	public ResultDO enableFood(@RequestParam String goodsIds) {
+		ResultDO resultDO = new ResultDO();
+		resultDO = foodsService.enableFoods(goodsIds);
+		return resultDO;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@RequestMapping("/editFood.do")
+	@ResponseBody
+	public ResultDO editFood(@RequestBody Goods goods) {
+		ResultDO resultDO = new ResultDO();
+		resultDO = foodsService.editFood(goods);
+		return resultDO;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@RequestMapping("/disableFoods.do")
+	@ResponseBody
+	public ResultDO disableFood(@RequestParam String goodsIds) {
+		ResultDO resultDO = new ResultDO();
+		resultDO = foodsService.disableFoods(goodsIds);
 		return resultDO;
 	}
 	

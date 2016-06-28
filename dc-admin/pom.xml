@@ -22,7 +22,7 @@
   </dependencies>
   
   <build>
-    <finalName>dcAdmin</finalName>
+    <finalName>dc-admin</finalName>
     <plugins>
 		<plugin>
 			<groupId>org.codehaus.mojo</groupId>

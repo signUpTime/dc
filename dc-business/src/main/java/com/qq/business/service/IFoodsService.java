@@ -10,13 +10,26 @@ import com.qq.common.param.foods.FoodsParam;
 public interface IFoodsService {
 
 	ResultDO<List<GoodsVO>> queryFoodsList(FoodsParam param);
+	
+	ResultDO<List<GoodsVO>> queryAdminFoodsList(FoodsParam param);
 
 	ResultDO<GoodsVO> selectFoodInfo(int id);
 
 	@SuppressWarnings("rawtypes")
 	ResultDO addFoods(Goods goods);
+	
+	@SuppressWarnings("rawtypes")
+	ResultDO editFood(Goods goods);
 
 	@SuppressWarnings("rawtypes")
 	ResultDO deleteFoods(String goodsIds);
+	
+	@SuppressWarnings("rawtypes")
+	ResultDO enableFoods(String goodsIds);
+	
+	@SuppressWarnings("rawtypes")
+	ResultDO disableFoods(String goodsIds);
+	
+
 
 }
