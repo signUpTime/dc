@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qq.common.data.mapper.GoodsPicMapper">
+	<resultMap id="BaseResultMap" type="com.qq.common.domain.GoodsPic">
+		<id column="id" property="id" />
+		<result column="pic_bytes" property="picBytes" jdbcType="BLOB" />
+		<result column="goods_id" property="goodsId" />
+		<result column="create_time" property="createTime" />
+	</resultMap>
+
+	<sql id="baseSql">
+		id,pic_bytes,goods_id
+	</sql>
+	
+	<insert id="addTmpFoodPic" parameterType="com.qq.common.domain.GoodsPic">
+	<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id"> 
+        SELECT LAST_INSERT_ID() AS ID   
+    </selectKey> 
+		INSERT INTO
+			qq_dingcan.t_goods_pic(pic_bytes, goods_id, create_time)
+		VALUES(#{picBytes},NULL,NOW())
+	</insert>
+	
+	<select id="selectPicBytesById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		SELECT	
+			<include refid="baseSql"></include>
+		FROM
+			qq_dingcan.t_goods_pic
+		WHERE
+			id=#{id}
+	</select>
+	
+	<select id="selectPicCountByFoodId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT
+			COUNT(1)
+		FROM
+			qq_dingcan.t_goods_pic
+		WHERE
+			goods_id = #{id}
+	</select>
+	
+	<select id="selectPicIdByFoodId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		SELECT
+			id
+		FROM
+			qq_dingcan.t_goods_pic
+		WHERE
+			goods_id = #{id}
+	</select>
+	
+	<update id="bindPicWithFood" parameterType="com.qq.common.domain.GoodsPic">
+		UPDATE
+			qq_dingcan.t_goods_pic
+		SET
+			goods_id = #{goodsId}
+		WHERE	
+			id = #{id}
+	</update>
+	
+	<update id="unbundPicWithFood" parameterType="java.lang.Integer">
+		UPDATE
+			qq_dingcan.t_goods_pic
+		SET
+			goods_id = NULL
+		WHERE	
+			goods_id = #{id}
+	</update>
+</mapper>

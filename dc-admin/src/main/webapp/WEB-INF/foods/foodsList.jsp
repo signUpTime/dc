@@ -39,7 +39,7 @@
 				</c:otherwise>
 			</c:choose>
 				<div style="float: left;width: 100px;height: 100px;">
-					<img alt="" src="${result.pic}">
+					<img alt="" src='<%=request.getContextPath()%>/foods/getFoodPic.do?id=${result.picId}'>
 				</div>
 				<div style="margin-top: 8px;margin-left:14px; float:left">
 					<span title="${result.description}" style="cursor:pointer;"><h3 ><b>${result.name}</b></h3></span>

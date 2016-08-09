@@ -1,5 +1,7 @@
 package com.qq.common.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -7,7 +9,11 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +36,12 @@ public class CommonController {
 	private static final String WEB_ROOT = "dcWebApp.root";
 	private static final String FOOD_PIC_LOC = File.separator+"images"+File.separator+"foods"+File.separator;
 	
+	@Resource
+	private ICommonService commonService;
+	
+	@Resource
+	private IConfigService configService;
+	
 	@RequestMapping("/uploadPicture.do")
 	@ResponseBody
 	public Map<String,String> uploadPicture(@RequestParam MultipartFile pic,HttpServletRequest request) throws IOException {
@@ -47,12 +59,6 @@ public class CommonController {
 		return result;
 	}
 	
-	
-	@Resource
-	private ICommonService commonService;
-	
-	@Resource
-	private IConfigService configService;
 	/**
 	 * @Title: uploadMultimediaPicture
 	 * @Description: TODO 图片上传
@@ -91,4 +97,5 @@ public class CommonController {
 		}
 		return map;
 	}
+	
 }

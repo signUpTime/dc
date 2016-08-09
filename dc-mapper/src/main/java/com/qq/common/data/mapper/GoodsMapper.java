@@ -19,7 +19,7 @@ public interface GoodsMapper {
 
 	public GoodsVO selectFoodById(int id);
 
-	public void insertGoods(Goods goods);
+	public int insertGoods(Goods goods);
 	
 	public void editGood(Goods goods);
 
@@ -28,4 +28,5 @@ public interface GoodsMapper {
 	public void enableFoods(@Param("ids")String[] ids);
 	
 	public void disableFoods(@Param("ids")String[] ids);
+	
 }

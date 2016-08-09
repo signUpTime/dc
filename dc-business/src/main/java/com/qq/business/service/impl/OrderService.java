@@ -160,7 +160,7 @@ public class OrderService implements IOrderService{
 		SimpleDateFormat legalDf = new SimpleDateFormat(CommonConstants.DATE_FORMART_TOTAL);
 		Date legalTime = legalDf.parse(legalTimeStr);
 		if(d.getTime() > legalTime.getTime()) {
-			return false;
+			return true;
 		} else {
 			return true;
 		}

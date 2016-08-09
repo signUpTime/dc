@@ -1,5 +1,6 @@
 package com.qq.business.service.impl;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.qq.business.service.IFoodsService;
 import com.qq.common.data.mapper.GoodsMapper;
+import com.qq.common.data.mapper.GoodsPicMapper;
 import com.qq.common.domain.Goods;
+import com.qq.common.domain.GoodsPic;
 import com.qq.common.domain.ResultDO;
 import com.qq.common.domain.goodsVO.GoodsVO;
 import com.qq.common.exception.BusinessException;
@@ -25,11 +28,15 @@ public class FoodsService implements IFoodsService{
 	private GoodsMapper goodsMapper;
 	
 	@Resource
+	private GoodsPicMapper goodsPicMapper;
+	
+	@Resource
 	private IConfigService configService;
 	
 	@Resource
 	private ICommonService commonService;
 	
+
 	@Override
 	public ResultDO<List<GoodsVO>> queryFoodsList(FoodsParam param) {
 		ResultDO<List<GoodsVO>> resultDO = new ResultDO<List<GoodsVO>>();
@@ -41,7 +48,8 @@ public class FoodsService implements IFoodsService{
 			list = goodsMapper.queryFoodList(param);
 		}
 		for(GoodsVO goodsVO : list) {
-				goodsVO.setPic(configService.get("getImgUrl")+goodsVO.getPic().replace("{0}", ""));
+			if(goodsPicMapper.selectPicCountByFoodId(goodsVO.getId())>0)
+				goodsVO.setPicId(goodsPicMapper.selectPicIdByFoodId(goodsVO.getId()));
 		}
 		resultDO.setModel(list);
 		resultDO.setTotalPage(totalPage);
@@ -70,7 +78,11 @@ public class FoodsService implements IFoodsService{
 		ResultDO<GoodsVO> result = new ResultDO<GoodsVO>();
 		GoodsVO goodsVO = goodsMapper.selectFoodById(id);
 		goodsVO.setPicName(goodsVO.getPic());
-		goodsVO.setPic(configService.get("getImgUrl")+goodsVO.getPic().replace("{0}", ""));
+//		goodsVO.setPic(configService.get("getImgUrl")+goodsVO.getPic().replace("{0}", ""));
+		if(goodsPicMapper.selectPicCountByFoodId(goodsVO.getId()) > 0) {
+			int picId = goodsPicMapper.selectPicIdByFoodId(id);
+			goodsVO.setPicId(picId);
+		}
 		if(goodsVO != null) {
 			result.setModel(goodsVO);
 		} else {
@@ -90,9 +102,36 @@ public class FoodsService implements IFoodsService{
 	
 	@SuppressWarnings("rawtypes")
 	@Override
+	public ResultDO addFoods(Goods goods, int picId) {
+		ResultDO resultDO = new ResultDO();
+		goodsMapper.insertGoods(goods);
+		GoodsPic goodsPic = new GoodsPic();
+		goodsPic.setGoodsId(goods.getId());
+		goodsPic.setId(picId);
+		goodsPicMapper.bindPicWithFood(goodsPic);
+		resultDO.setResult(true);
+		return resultDO;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Override
 	public ResultDO editFood(Goods goods) {
 		ResultDO resultDO = new ResultDO();
 		goodsMapper.editGood(goods);
+		resultDO.setResult(true);
+		return resultDO;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public ResultDO editFood(Goods goods, int picId) {
+		ResultDO resultDO = new ResultDO();
+		goodsMapper.editGood(goods);
+		goodsPicMapper.unbundPicWithFood(goods.getId());
+		GoodsPic goodsPic = new GoodsPic();
+		goodsPic.setGoodsId(goods.getId());
+		goodsPic.setId(picId);
+		goodsPicMapper.bindPicWithFood(goodsPic);
 		resultDO.setResult(true);
 		return resultDO;
 	}
@@ -138,5 +177,26 @@ public class FoodsService implements IFoodsService{
 		}
 		return resultDO;
 	}
+	
+	@Override
+	public ResultDO<String> addTmpFoodPic(GoodsPic goodsPic){
+		ResultDO<String> resultDO = new ResultDO<String>();
+		goodsPicMapper.addTmpFoodPic(goodsPic);
+		resultDO.setModel(String.valueOf(goodsPic.getId()));
+		resultDO.setResult(true);
+		return resultDO;
+	}
+	
 
+	@Override
+	public ResultDO<byte[]> selectPicBytesById(int id){
+		ResultDO<byte[]> resultDO = new ResultDO<>();
+		GoodsPic goodsPic = goodsPicMapper.selectPicBytesById(id);
+		if(goodsPic != null){
+			resultDO.setModel(goodsPic.getPicBytes());
+			resultDO.setResult(true);
+		}
+		return resultDO;
+	}
+	
 }

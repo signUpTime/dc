@@ -38,6 +38,7 @@
 					<div  class='place_pic' id='imageArea' style="display:none">
 						<img id="foodPic" src='' width='120' align='absmiddle' />
 						<input id="picName" value='' type="hidden"/>
+						<input id="picId" value='' type="hidden"/>
 					</div>
 				</td>
 			</tr>
@@ -76,37 +77,40 @@
 			obj.outerHTML = obj.outerHTML;
 			return false;
 		}
+		if (obj.files[0].size/1024 >= 30 ) {
+			alert("图片过大，请小于30Kb！");
+			obj.outerHTML = obj.outerHTML;
+			return false;
+		}
 		/* if (str == 'titleImg') {
 			titleNum = titleNum + 1;
 		} */
 		if (url.length > 0) {
 			var path = $("#path").val();
 // 			$.ajaxFileUpload({
-// 						url : path + "/common/uploadPicture.do",
-// 						secureuri : false,
-// 						fileElementId : obj.id,
-// 						dataType : "json",
-// 						success : function(data, status) {
-// 							$("#foodPic").attr('src',picLoc+data.picName);	
-// 							$("#picName").val(data.picName);
-// 							$("#imageArea").show();
-// 						},
-// 						error : function(data, status, e) {
-// 							/* if (str == 'titleImg') {
-// 								titleNum = titleNum - 1;
-// 							} */
-// 							alert(e);
-// 						}
-// 					})
+// 				url : path + "/common/uploadMultimediaPicture.do?imageChannel=pic",
+// 				secureuri : false,
+// 				fileElementId : obj.id,
+// 				dataType : "json",
+// 				success : function(data, status) {
+// 					$("#foodPic").attr('src',data.imgUrl);	
+// 					$("#picName").val(data.imagePath);
+// 					$("#imageArea").show();
+// 				},
+// 				error : function(data, status, e) {
+// 					alert(e);
+// 				}
+// 			})
 			$.ajaxFileUpload({
-				url : path + "/common/uploadMultimediaPicture.do?imageChannel=pic",
+				url : path + "/foods/pictureSerialzeValidation.do",
 				secureuri : false,
 				fileElementId : obj.id,
 				dataType : "json",
 				success : function(data, status) {
-					$("#foodPic").attr('src',data.imgUrl);	
-					$("#picName").val(data.imagePath);
-					$("#imageArea").show();
+						$("#foodPic").attr('src',path+"/foods/getFoodPic.do?id="+data.picId);
+						$("#picName").val(obj.files[0].name);
+						$("#picId").val(data.picId);
+						$("#imageArea").show();
 				},
 				error : function(data, status, e) {
 					alert(e);
@@ -140,6 +144,11 @@
 			layer.alert("请上传图片");
 			return;
 		}
+		var picId = $("#picId").val();
+		if(picId == '') {
+			layer.alert("请上传图片");
+			return;
+		}
 		var sourceUrl = $("#sourceUrl").val();
 		var description = $("#description").val();
 		dataObj.name = name;
@@ -149,7 +158,7 @@
 		dataObj.sourceUrl = sourceUrl;
 		dataObj.description = description;
 		$.ajax({
-			url: path+"/foods/addFood.do",
+			url: path+"/foods/addFood.do?picId="+picId,
 			type : "post",
 			dataType : "json",
 			contentType : "application/json",

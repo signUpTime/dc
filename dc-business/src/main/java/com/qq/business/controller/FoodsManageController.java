@@ -1,9 +1,18 @@
 package com.qq.business.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,11 +20,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.qq.business.service.IFoodsService;
 import com.qq.business.service.IOrderService;
 import com.qq.common.domain.Goods;
+import com.qq.common.domain.GoodsPic;
 import com.qq.common.domain.Order;
 import com.qq.common.domain.ResultDO;
 import com.qq.common.domain.User;
@@ -92,12 +103,45 @@ public class FoodsManageController {
 		return new ModelAndView("/WEB-INF/foods/addFood.jsp");
 	}
 	
+	@RequestMapping("/pictureSerialzeValidation.do")
+	@ResponseBody
+	public Map<String, String> pictureSerialzeValidation(@RequestParam MultipartFile pic, HttpServletRequest request) throws IOException {
+		Map<String, String> map = new HashMap<String, String>();
+		byte[] bytes = pic.getBytes();
+		GoodsPic goodsPic = new GoodsPic();
+		goodsPic.setPicBytes(bytes);
+		ResultDO<String> result = foodsService.addTmpFoodPic(goodsPic);
+		map.put("picId", result.getModel());
+		return map;
+	}
+	
+	@RequestMapping("/getFoodPic.do")
+	public void getFoodPic(@RequestParam int id, HttpServletResponse response) throws IOException {
+		ResultDO<byte[]> result= foodsService.selectPicBytesById(id);
+		byte[] bytes = result.getModel();
+		if(bytes == null)
+			return;
+		ByteArrayInputStream in = new ByteArrayInputStream(bytes);
+		ServletOutputStream output=null;
+		ImageOutputStream imageOut=null;
+		try {
+			BufferedImage image = ImageIO.read(in);
+			output=response.getOutputStream();
+			imageOut = ImageIO.createImageOutputStream(output);
+			ImageIO.write(image, "png", imageOut);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			imageOut.close();
+		}
+	}
+	 
 	@SuppressWarnings("rawtypes")
 	@RequestMapping("/addFood.do")
 	@ResponseBody
-	public ResultDO addFoodInfo(@RequestBody Goods goods) {
+	public ResultDO addFoodInfo(@RequestBody Goods goods,@RequestParam int picId ) {
 		ResultDO resultDO = new ResultDO();
-		resultDO = foodsService.addFoods(goods);
+		resultDO = foodsService.addFoods(goods, picId);
 		return resultDO;
 	}
 	
@@ -122,9 +166,9 @@ public class FoodsManageController {
 	@SuppressWarnings("rawtypes")
 	@RequestMapping("/editFood.do")
 	@ResponseBody
-	public ResultDO editFood(@RequestBody Goods goods) {
+	public ResultDO editFood(@RequestBody Goods goods,@RequestParam int picId) {
 		ResultDO resultDO = new ResultDO();
-		resultDO = foodsService.editFood(goods);
+		resultDO = foodsService.editFood(goods, picId);
 		return resultDO;
 	}
 	
