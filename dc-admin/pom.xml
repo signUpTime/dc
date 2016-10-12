@@ -19,6 +19,11 @@
 		<artifactId>dc-business</artifactId>
 		<version>${qingqing-version}</version>
 	</dependency>
+	  <dependency>
+		  <groupId>org.jasig.cas.client</groupId>
+		  <artifactId>cas-client-core</artifactId>
+		  <version>3.2.1</version>
+	  </dependency>
   </dependencies>
   
   <build>
