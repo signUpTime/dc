@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/common/common.jsp"/>
 <body id="body">
 	<%
-   	 	response.sendRedirect("http://172.20.13.87:8080/dc-admin/login/login.do");
+   	 	response.sendRedirect("http://172.22.4.42:8080/dc-admin/login/login.do");
 	%>
 </body>
 </html>

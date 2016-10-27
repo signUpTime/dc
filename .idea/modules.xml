@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dc.iml" filepath="$PROJECT_DIR$/dc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dc-admin/dc-admin.iml" filepath="$PROJECT_DIR$/dc-admin/dc-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dc-business/dc-business.iml" filepath="$PROJECT_DIR$/dc-business/dc-business.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dc-common/dc-common.iml" filepath="$PROJECT_DIR$/dc-common/dc-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dc-mapper/dc-mapper.iml" filepath="$PROJECT_DIR$/dc-mapper/dc-mapper.iml" />
+    </modules>
+  </component>
+</project>
