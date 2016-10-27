@@ -24,6 +24,8 @@
   		qq_dingcan.t_user
   	WHERE
   		mail = #{mail}
+    AND
+        is_deleted = 0
   </select>
   
   <insert id="insertUser" parameterType="com.qq.common.domain.User" useGeneratedKeys="true" keyProperty="id">

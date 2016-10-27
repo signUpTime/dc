@@ -5,3 +5,6 @@
 /*/*.prefs
 *.classpath
 /.settings
+.idea
+*rebel.xml
+*.iml

@@ -36,8 +36,9 @@
 					<td>
 						<input name="pic" type="file" id="titlePic" class="input_updata" onchange="ValidateImgUrl(this,'titleImg')"/>
 						<div  class='place_pic' id='imageArea' >
-							<img id="foodPic" src='${food.pic}' width='120' align='absmiddle' />
+							<img id="foodPic" src='<%=request.getContextPath()%>/foods/getFoodPic.do?id=${food.picId}' width='120' align='absmiddle' />
 							<input id="picName" value='${food.picName}' type="hidden"/>
+							<input id="picId" value='${food.picId}' type="hidden"/>
 						</div>
 					</td>
 			</tr>
@@ -80,15 +81,30 @@
 		} */
 		if (url.length > 0) {
 			var path = $("#path").val();
+// 			$.ajaxFileUpload({
+// 				url : path + "/common/uploadMultimediaPicture.do?imageChannel=pic",
+// 				secureuri : false,
+// 				fileElementId : obj.id,
+// 				dataType : "json",
+// 				success : function(data, status) {
+// 					$("#foodPic").attr('src',data.imgUrl);	
+// 					$("#picId").val(data.imagePath);
+// 					$("#imageArea").show();
+// 				},
+// 				error : function(data, status, e) {
+// 					alert(e);
+// 				}
+// 			})
 			$.ajaxFileUpload({
-				url : path + "/common/uploadMultimediaPicture.do?imageChannel=pic",
+				url : path + "/foods/pictureSerialzeValidation.do",
 				secureuri : false,
 				fileElementId : obj.id,
 				dataType : "json",
 				success : function(data, status) {
-					$("#foodPic").attr('src',data.imgUrl);	
-					$("#picName").val(data.imagePath);
-					$("#imageArea").show();
+						$("#foodPic").attr('src',path+"/foods/getFoodPic.do?id="+data.picId);
+						$("#picName").val(obj.files[0].name);
+						$("#picId").val(data.picId);
+						$("#imageArea").show();
 				},
 				error : function(data, status, e) {
 					alert(e);
@@ -126,6 +142,11 @@
 			layer.alert("请上传图片");
 			return;
 		}
+		var picId = $("#picId").val();
+		if(picId == '') {
+			layer.alert("请上传图片");
+			return;
+		}
 		var sourceUrl = $("#sourceUrl").val();
 		var description = $("#description").val();
 		dataObj.id = ${food.id};
@@ -136,7 +157,7 @@
 		dataObj.sourceUrl = sourceUrl;
 		dataObj.description = description;
 		$.ajax({
-			url: path+"/foods/editFood.do",
+			url: path+"/foods/editFood.do?picId="+picId,
 			type : "post",
 			dataType : "json",
 			contentType : "application/json",

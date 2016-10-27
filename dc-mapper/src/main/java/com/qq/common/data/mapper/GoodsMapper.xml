@@ -99,6 +99,9 @@
   </select>
     
   <insert id="insertGoods" parameterType="com.qq.common.domain.Goods">
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id"> 
+        SELECT LAST_INSERT_ID() AS ID   
+   </selectKey> 
   	INSERT INTO 
   		qq_dingcan.t_goods(name,pic,shop_id,price,source_url,description,last_update_time,create_time)
   	VALUES(#{name},#{pic},#{shopId},#{price},#{sourceUrl},#{description},NOW(),NOW())
