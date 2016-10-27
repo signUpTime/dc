@@ -2,6 +2,7 @@ package com.qq.admin.filter;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -11,6 +12,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import com.qq.common.exception.BusinessException;
+import org.apache.commons.collections.CollectionUtils;
 import org.jasig.cas.client.authentication.AttributePrincipal;
 
 import com.qq.common.constants.CommonConstants;
@@ -32,7 +35,11 @@ public class AuthFilter implements Filter{
 			AttributePrincipal principal = (AttributePrincipal) (req).getUserPrincipal();
 			Map<String, Object> map = principal.getAttributes();
 			User user = new User();
-			for(String key:map.keySet()) {
+			Set<String> keys = map.keySet();
+			if(CollectionUtils.isEmpty(keys)) {
+				throw new BusinessException("登录失败！");
+			}
+			for(String key : keys) {
 				System.out.println(key+":"+map.get(key));
 				switch (key) {
 				case CommonConstants.USER_NAME:
