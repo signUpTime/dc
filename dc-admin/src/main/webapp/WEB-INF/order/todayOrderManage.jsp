@@ -17,6 +17,8 @@
             	<input type="button" class="button" value="已收" onclick="updateBookStatus(2)"/>
             </td>
             <td nowrap="nowrap" class="right">
+				送餐地址:
+				<qqtag:selectDestinationTag id="selectDestination" name="selectDestination" firstLabelDisplay="不限" firstLabelValue="0" selectedValue="${user.destinationId}"></qqtag:selectDestinationTag>
             	商家:
             	<input type="text" id="shopName" class="input_data"/>
             	餐名：
@@ -51,6 +53,7 @@ window.alert = function(msg) {
 
 function query(pageNum){
 	var request = {};
+	request.destinationId = $("#selectDestination").val();
 	request.shopName = $("#shopName").val();
 	request.goodsName = $("#goodsName").val();
 	request.bookStatus = $("#bookStatus option:selected").val();

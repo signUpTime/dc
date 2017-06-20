@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class Shop {
 	private int id;
+	private int destinationId;
 	private String name;
 	private String address;
 	private String description;
@@ -13,11 +14,18 @@ public class Shop {
 	private int isDeleted;
 	private Timestamp lastUpdateTime;
 	private Date createTime;
+
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getDestinationId(){
+		return destinationId;
+	}
+	public void setDestinationId(int destinationId){
+		this.destinationId = destinationId;
 	}
 	public String getName() {
 		return name;
@@ -67,5 +75,5 @@ public class Shop {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+
 }

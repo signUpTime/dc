@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qq.common.data.mapper.DestinationMapper">
+    <resultMap id="BaseResultMap" type="com.qq.common.domain.Destination" >
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="address" property="address" />
+        <result column="description" property="description" />
+        <result column="is_deleted" property="isDeleted" />
+    </resultMap>
+
+    <sql id="BaseSql">
+        id,name,address,description,is_deleted
+    </sql>
+
+    <select id="selectAllDestinations" resultMap="BaseResultMap">
+        select
+          <include refid="BaseSql"></include>
+        from
+          t_destination
+        where
+          is_deleted = 0
+    </select>
+    
+</mapper>

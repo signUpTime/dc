@@ -80,7 +80,9 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/todayOrderUserManage.do")
-	public ModelAndView todayOrderUserManage() {
+	public ModelAndView todayOrderUserManage(ModelMap modelMap,HttpServletRequest request) {
+		User user = (User) RequestExtract.getAdminInfo(request);
+		modelMap.addAttribute("user", user);
 		return new ModelAndView("/WEB-INF/order/todayOrderUserManage.jsp");
 	}
 	

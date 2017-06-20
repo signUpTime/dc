@@ -7,7 +7,7 @@ import com.qq.common.domain.Shop;
 
 public interface IShopService {
 
-	ResultDO<List<Shop>> queryShopList(String name);
+	ResultDO<List<Shop>> queryShopList(String name,int destinationId);
 
 	@SuppressWarnings("rawtypes")
 	ResultDO addShop(Shop shop);

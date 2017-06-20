@@ -11,6 +11,7 @@ public class OrderParam {
 	private String department;//订餐人员部门
 	private String goodsName;
 	private String shopName;
+	private String destinationId; //送餐地址
 	private int status;
 	private int bookStatus;
 	private String startTime;
@@ -79,6 +80,12 @@ public class OrderParam {
 	}
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
+	}
+	public String getDestinationId(){
+		return destinationId;
+	}
+	public void setDestinationId(String destinationId){
+		this.destinationId = destinationId;
 	}
 	public String[] getGoodsIds() {
 		return goodsIds;

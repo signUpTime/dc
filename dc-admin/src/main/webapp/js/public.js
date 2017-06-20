@@ -240,6 +240,14 @@ function alertDealPage(url){
 	});
 	layer.full(index);
 }
+function alertUpdateDestinationId(url){
+	layer.open({
+		type : 2,
+		content: url,
+		area : ['300px', '300px'],
+		maxmin:true
+	});
+}
 window.onresize=function() {
     layer.style(index,{
         width: $(window).width()+ 'px',

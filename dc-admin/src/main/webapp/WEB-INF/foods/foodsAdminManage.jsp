@@ -19,6 +19,8 @@
             	<input type="button" class="button" value="下架" onclick="disableFood()"/>
             </td>
             <td nowrap="nowrap" class="right">
+				送餐地址:
+				<qqtag:selectDestinationTag id="selectDestination" name="selectDestination" firstLabelDisplay="不限" firstLabelValue="0" selectedValue="${user.destinationId}"></qqtag:selectDestinationTag>
             	商家:
             	<input type="text" id="shopName" class="input_data"/>
             	餐名：
@@ -48,6 +50,7 @@ function query(pageNum){
 	var request = {};
 	request.shopName = $("#shopName").val();
 	request.foodsName = $("#goodsName").val();
+	request.destinationId = $("#selectDestination").val();
 	$.ajax({
 		url : path + "/foods/queryAdminFoodsList.do",
 		type : "post",

@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  */
 public abstract class AbstractSelectTagSupport extends TagSupport{
 	/**  */
-	private static final long serialVersionUID = -2920053780144094442L;
+	static final long serialVersionUID = -2920053780144094442L;
 	
 	protected String firstLabelValue = null; // 第一行数据
 	protected String firstLabelDisplay = null; // 第一行显示

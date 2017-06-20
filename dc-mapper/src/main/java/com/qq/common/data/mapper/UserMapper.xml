@@ -3,6 +3,7 @@
 <mapper namespace="com.qq.common.data.mapper.UserMapper" >
   <resultMap id="BaseResultMap" type="com.qq.common.domain.User" >
     <id column="id" property="id" />
+    <result column="destination_id" property="destinationId" />
     <result column="name" property="name" />
     <result column="account_name" property="accountName" />
     <result column="mail" property="mail" />
@@ -14,29 +15,48 @@
   </resultMap>
   
   <sql id="BaseSql">
-  	id,name,account_name,mail,department,is_admin,create_time,last_update_time,is_deleted
+  	id,destination_id,name,account_name,mail,department,is_admin,create_time,last_update_time,is_deleted
   </sql>
   
   <select id="selectUserByMail" resultMap="BaseResultMap" parameterType="com.qq.common.domain.User">
   	SELECT
   		<include refid="BaseSql"></include>
   	FROM
-  		qq_dingcan.t_user
+  		t_user
   	WHERE
   		mail = #{mail}
     AND
         is_deleted = 0
   </select>
-  
+
+  <select id="selectAllUsers" resultMap="BaseResultMap">
+    SELECT
+       <include refid="BaseSql"></include>
+    FROM
+       t_user
+    WHERE
+       is_deleted = 0
+  </select>
+
+  <update id="updateDestinationId" parameterType="java.util.Map">
+        update t_user set destination_id = #{destinationId}
+        where id = #{userId}
+  </update>
+
+  <select id="updateDepartment" parameterType="java.util.Map">
+        update t_user set department = #{department}
+        where id = #{userId}
+  </select>
+
   <insert id="insertUser" parameterType="com.qq.common.domain.User" useGeneratedKeys="true" keyProperty="id">
   	INSERT INTO
-  		qq_dingcan.t_user
+  		t_user
   		(
-  			name,account_name,mail,department,create_time,last_update_time,is_deleted
+  			destination_id,name,account_name,mail,department,create_time,last_update_time,is_deleted
   		)
   	VALUES
   		(
-  			#{name},#{accountName},#{mail},#{department},NOW(),NOW(),0
+  			#{destinationId},#{name},#{accountName},#{mail},#{department},NOW(),NOW(),0
   		)
   </insert>
   

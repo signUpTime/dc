@@ -5,6 +5,7 @@ public class OrderFoodVO {
 	private int goodsId;
 	private String goodsName; //餐名
 	private String shopName; //商家名
+	private String destinationName; //送餐地址
 	private String goodsSource;
 	private String shopSource;
 	private int count;
@@ -22,6 +23,12 @@ public class OrderFoodVO {
 	}
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
+	}
+	public String getDestinationName(){
+		return destinationName;
+	}
+	public void setDestinationName(String destinationName){
+		this.destinationName = destinationName;
 	}
 	public int getCount() {
 		return count;

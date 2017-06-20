@@ -286,7 +286,6 @@
 				<version>2.1.1</version>
 				<configuration>
 					<attach>true</attach>
-					<encoding>UTF-8</encoding>
 				</configuration>
 				<executions>
 					<execution>
@@ -313,10 +312,26 @@
 		<profile>
 			<id>development</id>
 			<properties>
+				<env>develop</env>
+				<log_level>DEBUG</log_level>
+			</properties>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<filtering>false</filtering>
+					</resource>
+				</resources>
+			</build>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
 				<env>test</env>
 				<log_level>DEBUG</log_level>
-				<properties_path></properties_path>
-				<config_properties_path>config.properties</config_properties_path>
 			</properties>
 			<build>
 				<resources>
@@ -331,45 +346,15 @@
 			</activation>
 		</profile>
 		<profile>
-			<id>test</id>
-			<properties>
-				<env>test</env>
-				<log_level>DEBUG</log_level>
-				<properties_path></properties_path>
-				<config_properties_path>config.properties</config_properties_path>
-			</properties>
-			<build>
-				<resources>
-					<resource>
-						<directory>src/main/resources</directory>
-						<excludes>
-							<exclude>*.properties</exclude>
-							<exclude>*.txt</exclude>
-						</excludes>
-						<filtering>true</filtering>
-					</resource>
-				</resources>
-			</build>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-		</profile>
-		<profile>
 			<id>production</id>
 			<properties>
 				<env>production</env>
 				<log_level>ERROR</log_level>
-				<properties_path></properties_path>
-				<config_properties_path>config.properties</config_properties_path>
 			</properties>
 			<build>
 				<resources>
 					<resource>
 						<directory>src/main/resources</directory>
-						<excludes>
-							<exclude>*.properties</exclude>
-							<exclude>*.txt</exclude>
-						</excludes>
 						<filtering>true</filtering>
 					</resource>
 				</resources>

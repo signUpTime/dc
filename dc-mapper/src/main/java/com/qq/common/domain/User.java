@@ -7,6 +7,7 @@ import java.util.Date;
 public class User extends AdminInfo{
 	private static final long serialVersionUID = 6467166305470889990L;
 	private int id;
+	private int destinationId;//送餐地址
 	private String name;//真实姓名
 	private String accountName; //域账号名
 	private String mail; //邮箱
@@ -21,6 +22,12 @@ public class User extends AdminInfo{
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getDestinationId(){
+		return destinationId;
+	}
+	public void setDestinationId(int destinationId){
+		this.destinationId = destinationId;
 	}
 	public String getName() {
 		return name;
@@ -70,5 +77,5 @@ public class User extends AdminInfo{
 	public void setIsAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	
+
 }

@@ -17,7 +17,7 @@
         SELECT LAST_INSERT_ID() AS ID   
     </selectKey> 
 		INSERT INTO
-			qq_dingcan.t_goods_pic(pic_bytes, goods_id, create_time)
+			t_goods_pic(pic_bytes, goods_id, create_time)
 		VALUES(#{picBytes},NULL,NOW())
 	</insert>
 	
@@ -25,7 +25,7 @@
 		SELECT	
 			<include refid="baseSql"></include>
 		FROM
-			qq_dingcan.t_goods_pic
+			t_goods_pic
 		WHERE
 			id=#{id}
 	</select>
@@ -34,7 +34,7 @@
 		SELECT
 			COUNT(1)
 		FROM
-			qq_dingcan.t_goods_pic
+			t_goods_pic
 		WHERE
 			goods_id = #{id}
 	</select>
@@ -43,14 +43,14 @@
 		SELECT
 			id
 		FROM
-			qq_dingcan.t_goods_pic
+			t_goods_pic
 		WHERE
 			goods_id = #{id}
 	</select>
 	
 	<update id="bindPicWithFood" parameterType="com.qq.common.domain.GoodsPic">
 		UPDATE
-			qq_dingcan.t_goods_pic
+			t_goods_pic
 		SET
 			goods_id = #{goodsId}
 		WHERE	
@@ -59,7 +59,7 @@
 	
 	<update id="unbundPicWithFood" parameterType="java.lang.Integer">
 		UPDATE
-			qq_dingcan.t_goods_pic
+			t_goods_pic
 		SET
 			goods_id = NULL
 		WHERE	

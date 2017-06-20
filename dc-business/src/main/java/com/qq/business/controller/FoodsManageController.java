@@ -2,6 +2,7 @@ package com.qq.business.controller;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -57,7 +58,9 @@ public class FoodsManageController {
 	}
 	
 	@RequestMapping("/foodsList.do")
-	public ModelAndView toFoodsList() {
+	public ModelAndView toFoodsList(ModelMap modelMap,HttpServletRequest request) {
+		User user = (User) RequestExtract.getAdminInfo(request);
+		modelMap.addAttribute("user",user);
 		return new ModelAndView("/WEB-INF/foods/foodsManage.jsp");
 	}
 	
@@ -65,10 +68,12 @@ public class FoodsManageController {
 	public ModelAndView queryFoodsList(@RequestBody FoodsParam param,ModelMap modelMap,HttpServletRequest request) {
 		ResultDO<List<GoodsVO>> result = new ResultDO<List<GoodsVO>>();
 		ResultDO<Order> myTodayOrder = new ResultDO<Order>();
-		result = foodsService.queryFoodsList(param);
 		User user = (User) RequestExtract.getAdminInfo(request);
+		param.setDestinationId(user.getDestinationId());
+
 		OrderParam orderParam = new OrderParam();
 		orderParam.setUserId(user.getId());
+		result = foodsService.queryFoodsList(param);
 		myTodayOrder = orderService.queryMyTodayOrder(orderParam);
 		modelMap.addAttribute("foodList", result.getModel());
 		modelMap.addAttribute("myTodayOrder", myTodayOrder.getModel());
@@ -76,7 +81,8 @@ public class FoodsManageController {
 		modelMap.addAttribute("currentPageNum", result.getCurrentPage());
 		return new ModelAndView("/WEB-INF/foods/foodsList.jsp");
 	}
-	
+
+
 	@RequestMapping("/toFoodsAdminManage.do")
 	public ModelAndView toFoodsAdminManage() {
 		return new ModelAndView("/WEB-INF/foods/foodsAdminManage.jsp");

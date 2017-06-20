@@ -16,8 +16,10 @@
             	<input type="button" class="button" value="取餐" onclick="receiveFood()"/>
             </td>
             <td nowrap="nowrap" class="right">
+				送餐地址:
+				<qqtag:selectDestinationTag id="selectDestination" name="selectDestination" firstLabelDisplay="不限" firstLabelValue="0" selectedValue="${user.destinationId}"></qqtag:selectDestinationTag>
             	部门:
-            	<input type="text" id="department" class="input_data"/>
+				<qqtag:selectDepartmentTag name="selectDepartment" id="selectDepartment" firstLabelDisplay="不限"  firstLabelValue="0" selectedValue="${user.department}"></qqtag:selectDepartmentTag>
             	姓名：
             	<input type="text" id="name" class="input_data" />
             	餐名：
@@ -51,7 +53,12 @@ window.alert = function(msg) {
 
 function query(pageNum){
 	var request = {};
-	request.department = $("#department").val();
+	request.destinationId = $("#selectDestination").val();
+	var department = $("#selectDepartment").val();
+	if(department==0){
+		department=null;
+	}
+	request.department = department;
 	request.name = $("#name").val();
 	request.goodsName = $("#goodsName").val();
 	request.status = $("#status option:selected").val();

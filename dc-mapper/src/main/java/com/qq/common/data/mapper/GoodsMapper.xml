@@ -22,14 +22,14 @@
   	SELECT
   		<include refid="baseSql"></include>
   	FROM
-  		qq_dingcan.t_goods
+  		t_goods
   </select>
   
   <select id="selectGoodsCount" resultType="java.lang.Integer" parameterType="com.qq.common.param.foods.FoodsParam">
   	SELECT
   		COUNT(1)
   	FROM
-  		qq_dingcan.t_goods
+  		t_goods
   	WHERE
   		is_deleted=0
   </select>
@@ -39,15 +39,18 @@
   		A.id,A.name,A.pic,A.shop_id,A.price,A.source_url,A.description,A.create_time,A.last_update_time,A.is_under_shelf,
   		B.name as shopName
   	FROM
-  		qq_dingcan.t_goods A
+  		t_goods A
   	LEFT JOIN
-  		qq_dingcan.t_shop B
+  		t_shop B
   	ON
   		A.shop_id = B.id
   	WHERE
   		A.is_under_shelf=0
   	AND
   		A.is_deleted=0
+	AND
+	   B.destination_id = #{destinationId}
+
   	<if test="foodsName != null and foodsName != ''">
   		AND
   			A.name LIKE CONCAT("%",#{foodsName},"%")
@@ -65,9 +68,9 @@
   		A.id,A.name,A.pic,A.shop_id,A.price,A.source_url,A.description,A.create_time,A.last_update_time,A.is_under_shelf,
   		B.name as shopName
   	FROM
-  		qq_dingcan.t_goods A
+  		t_goods A
   	LEFT JOIN
-  		qq_dingcan.t_shop B
+  		t_shop B
   	ON
   		A.shop_id = B.id
   	WHERE
@@ -80,6 +83,10 @@
   		AND
   			B.name LIKE CONCAT("%",#{shopName},"%")
   	</if>
+	<if test="destinationId !=null and destinationId !=0">
+		AND
+			B.destination_id = #{destinationId}
+	</if>
   	ORDER BY
   		A.is_under_shelf ASC
   </select>
@@ -89,9 +96,9 @@
   		A.id,A.name,A.pic,A.shop_id,A.price,A.source_url,A.description,A.create_time,A.last_update_time,A.is_under_shelf,
   		B.name as shopName
   	FROM
-  		qq_dingcan.t_goods A
+  		t_goods A
   	LEFT JOIN
-  		qq_dingcan.t_shop B
+  		t_shop B
   	ON
   		A.shop_id = B.id
   	WHERE
@@ -103,13 +110,13 @@
         SELECT LAST_INSERT_ID() AS ID   
    </selectKey> 
   	INSERT INTO 
-  		qq_dingcan.t_goods(name,pic,shop_id,price,source_url,description,last_update_time,create_time)
+  		t_goods(name,pic,shop_id,price,source_url,description,last_update_time,create_time)
   	VALUES(#{name},#{pic},#{shopId},#{price},#{sourceUrl},#{description},NOW(),NOW())
   </insert>
   
   <update id="editGood" parameterType="com.qq.common.domain.Goods">
   	UPDATE 
-  		qq_dingcan.t_goods
+  		t_goods
   	SET
   		name=#{name},
   		price=#{price},
@@ -123,7 +130,7 @@
   </update>
   <update id="deleteFoods">
   	UPDATE
-  		qq_dingcan.t_goods
+  		t_goods
   	SET
   		is_deleted=1
   	WHERE
@@ -135,7 +142,7 @@
   
   <update id="enableFoods">
   	UPDATE
-  		qq_dingcan.t_goods
+  		t_goods
   	SET
   		is_under_shelf=0
   	WHERE
@@ -147,7 +154,7 @@
   
   <update id="disableFoods">
   	UPDATE
-  		qq_dingcan.t_goods
+  		t_goods
   	SET
   		is_under_shelf=1
   	WHERE

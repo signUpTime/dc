@@ -58,6 +58,7 @@ public class AuthFilter implements Filter{
 					break;
 				}
 			}
+			req.getSession().setAttribute(CommonConstants.USER_DEPARTMENT, user.getDepartment());
 			req.getSession().setAttribute(CommonConstants.LOGINED_USER, user);
 		}
 		

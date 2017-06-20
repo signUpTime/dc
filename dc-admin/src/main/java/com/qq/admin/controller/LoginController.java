@@ -28,12 +28,14 @@ public class LoginController {
 	@RequestMapping("/login.do")
 	public ModelAndView login(HttpServletRequest request,ModelMap modelMap) {
 		User user = (User) request.getSession().getAttribute(CommonConstants.LOGINED_USER);
+
 		if(user != null) {
 			modelMap.addAttribute("user", user);
 		} else {
 			return new ModelAndView("/index.jsp");
 		}
-		return new ModelAndView("/WEB-INF/main.jsp");
+		user.setDepartment((String) request.getSession().getAttribute(CommonConstants.USER_DEPARTMENT));
+		return  new ModelAndView("redirect:/user/updateDepartment.do");
 	}
 
 	@RequestMapping("/logout.do")
@@ -47,4 +49,5 @@ public class LoginController {
 		request.getRequestDispatcher("/WEB-INF/common/login.jsp").forward(request, response);
 		return null;
 	}
+
 }

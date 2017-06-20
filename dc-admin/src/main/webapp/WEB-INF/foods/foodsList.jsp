@@ -26,7 +26,8 @@
 		<c:if test="${foodList == null || fn:length(foodList) == 0}">
 			<tr bgcolor="#FFFFFF">
 				<td align="center" colspan="20"><br>&nbsp;</br> <br>&nbsp;</br>
-					没有符合条件的记录 <br>&nbsp;</br> <br>&nbsp;</br></td>
+					没有符合条件的记录,请更换送餐地址 <br>&nbsp;</br> <br>&nbsp;</br>
+				</td>
 			</tr>
 		</c:if>
 		<c:forEach items="${foodList}" var="result" varStatus="loop">

@@ -16,10 +16,10 @@ $(document).ready(function(){
 <body id="body">
 <%-- 	<iframe id="main" name="main" src="<%=request.getContextPath()%>/page/index.do" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" ></iframe> --%>
 		<iframe id="head" name="head" src="<%=request.getContextPath()%>/page/getHeader.do" width="100%" height="105" frameborder="0" scrolling="yes" noresize="noresize"></iframe>
-		<iframe src="<%=request.getContextPath()%>/foods/foodsList.do" frameborder="0" width="100%" noresize="noresize" name="content" id="content" scrolling="yes"></iframe>
 		<input id="path"  style="display:none;" value="<%=request.getContextPath()%>"/>
-
+		<iframe src="<%=request.getContextPath()%>/foods/foodsList.do" frameborder="0" width="100%" noresize="noresize" name="content" id="content" scrolling="yes"></iframe>
 <script src="<%=request.getContextPath()%>/js/LL.js<%=System.getProperty("version")%>" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/js/pushService.js<%=System.getProperty("version")%>" type="text/javascript"></script>
 </body>
+
 </html>

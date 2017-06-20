@@ -33,9 +33,9 @@ public class ShopController {
 	}
 	
 	@RequestMapping("/queryShopList.do")
-	public ModelAndView queryShopList(ModelMap modelMap,@RequestParam(required=false)String name) {
+	public ModelAndView queryShopList(ModelMap modelMap,@RequestParam(required=false)String name,@RequestParam(required=false)int destinationId) {
 		ResultDO<List<Shop>> resultDO = new ResultDO<List<Shop>>();
-		resultDO = shopService.queryShopList(name);
+		resultDO = shopService.queryShopList(name,destinationId);
 		modelMap.addAttribute("list", resultDO.getModel());
 		return new ModelAndView("/WEB-INF/shop/shopList.jsp");
 	}

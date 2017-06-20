@@ -9,6 +9,7 @@ public class Order {
 	private long id;
 	private int userId;
 	private int goodsId;
+	private int destinationId;
 	private BigDecimal totalPrice;
 	private int status; //员工取餐状态 0：下单成功员工未取餐 1：员工已取餐
 	private int bookStatus;//管理员订餐状态 0：未订餐 1：管理员已订餐 2：管理员已收到订餐
@@ -34,6 +35,12 @@ public class Order {
 	}
 	public void setGoodsId(int goodsId) {
 		this.goodsId = goodsId;
+	}
+	public int getDestinationId(){
+		return destinationId;
+	}
+	public void setDestinationId(int destinationId){
+		this.destinationId = destinationId;
 	}
 	public BigDecimal getTotalPrice() {
 		return totalPrice;

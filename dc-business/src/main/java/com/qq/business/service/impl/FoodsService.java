@@ -190,7 +190,7 @@ public class FoodsService implements IFoodsService{
 
 	@Override
 	public ResultDO<byte[]> selectPicBytesById(int id){
-		ResultDO<byte[]> resultDO = new ResultDO<>();
+		ResultDO<byte[]> resultDO = new ResultDO<byte[]>();
 		GoodsPic goodsPic = goodsPicMapper.selectPicBytesById(id);
 		if(goodsPic != null){
 			resultDO.setModel(goodsPic.getPicBytes());

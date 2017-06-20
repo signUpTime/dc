@@ -14,6 +14,7 @@
             <td nowrap="nowrap" class="left">
             	<font>当前位置：</font>点餐-菜单列表
             	<!-- <input type="button" class="button" value="订餐" onclick="orderFood()"/> -->
+				<input id="updateDestination" type="button" class="button" value="更换送餐地址" onclick="toUpdateDestination()"/>
             </td>
             <td nowrap="nowrap" class="right">
             	<input id="query" type="button" name="Submit" value="开始查询"
@@ -30,6 +31,9 @@
 var path = $("#path").val();
 
 $(document).ready(function(){
+	if(${user.destinationId<1}){
+		$('#updateDestination').trigger("click");
+	}
 	query(1);
 });
 
@@ -67,7 +71,10 @@ function query(pageNum){
 		}
 	});
 }
-
+function toUpdateDestination(){
+	var url = path + "/user/toAddDestinationId.do";
+	alertUpdateDestinationId(url);
+}
 function orderFood(obj) {
 	/* var goodsId = $("input[type='radio'][name='food']:checked").val(); */
 	var goodsId = $(obj).attr('name');

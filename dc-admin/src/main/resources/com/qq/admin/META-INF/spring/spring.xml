@@ -18,5 +18,33 @@
 	<context:component-scan base-package="com.qq.admin" />
 	<context:annotation-config />
 	<tx:annotation-driven />
+
+	<bean id="propertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:common.properties</value>
+				<value>classpath:config.properties</value>
+			</list>
+		</property>
+		<property name="fileEncoding" value="utf-8" />
+	</bean>
+
+	<bean id="qingqingFtpClient" class="com.qq.admin.utils.QingqingFtpClient">
+		<property name="port" value="${ftp.port}"/>
+		<property name="username" value="${ftp.username}"/>
+		<property name="password" value="${ftp.password}"/>
+		<property name="host" value="${ftp.host}"/>
+	</bean>
+
+	<bean id="globalConfig" class="com.qq.admin.constant.ConfigManager" init-method="init">
+		<property name="qingqingFtpClient" ref="qingqingFtpClient"/>
+		<property name="truststoreFilePath">
+			<value>${ftp.ssl.truststore.filepath}</value>
+		</property>
+		<property name="trustStorePassword">
+			<value>${ssl.trustStorePassword}</value>
+		</property>
+	</bean>
 	
 </beans>

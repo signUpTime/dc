@@ -18,6 +18,12 @@
 	<div id="queryResult">
 		<table border="0" cellspacing="0" cellpadding="0" class="frame"	id="tableContent">
 			<tr>
+				<th>送餐地址</th>
+				<td>
+					<qqtag:selectDestinationTag id="selectDestination" name="selectDestination" selectedValue="${user.destinationId}"></qqtag:selectDestinationTag>
+				</td>
+			</tr>
+			<tr>
 				<th width="120">名称</th>
 				<td><input id="name" type="text" class="input_data input_edit" maxlength="64"/></td>
 			</tr>
@@ -56,6 +62,7 @@
 	
 	function saveShop() {
 		var dataObj = {};
+		var destinationId = $("#selectDestination").val();
 		var name = $("#name").val();
 		if(name == '') {
 			layer.alert("商家名称");
@@ -68,6 +75,7 @@
 		}
 		var sourceUrl = $("#sourceUrl").val();
 		var description = $("#description").val();
+		dataObj.destinationId = destinationId;
 		dataObj.name = name;
 		dataObj.address = address;
 		dataObj.phone = $("#phone").val();

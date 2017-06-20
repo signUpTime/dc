@@ -17,6 +17,8 @@
             	<input type="button" class="button" value="新增" onclick="toAddShop()"/>
             </td>
             <td nowrap="nowrap" class="right">
+				送餐地址:
+				<qqtag:selectDestinationTag id="selectDestination" name="selectDestination" firstLabelDisplay="不限" firstLabelValue="0" selectedValue="${user.destinationId}"></qqtag:selectDestinationTag>
             	商家:
             	<input type="text" id="shopName" class="input_data"/>
             	<input id="query" type="button" name="Submit" value="开始查询"
@@ -42,8 +44,9 @@ window.alert = function(msg) {
 
 function query(pageNum){
 	var name = $("#shopName").val();
+	var destinationId = $("#selectDestination").val();
 	$.ajax({
-		url : path + "/shop/queryShopList.do?name="+name,
+		url : path + "/shop/queryShopList.do?name="+name+"&destinationId="+destinationId,
 		type : "post",
 		dataType : "html",
 		beforeSend : function() {

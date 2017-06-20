@@ -17,6 +17,7 @@
 				<th width="50px" ><input type="checkbox" id="checkAll" value=""/></th>
 				<th>餐名</th>
 				<th>商家</th>
+				<th>送餐地址</th>
 				<th>数量</th>
 				<th>状态</th>
 			<!-- 	<th>订餐人员</th> -->
@@ -24,7 +25,8 @@
 			<c:if test="${orderFoodList == null || fn:length(orderFoodList) == 0}">
 				<tr bgcolor="#FFFFFF">
 					<td align="center" colspan="20"><br>&nbsp;</br> <br>&nbsp;</br>
-						没有符合条件的记录 <br>&nbsp;</br> <br>&nbsp;</br></td>
+						没有符合条件的记录 <br>&nbsp;</br> <br>&nbsp;</br>
+					</td>
 				</tr>
 			</c:if>
 			<c:forEach items="${orderFoodList}" var="result" varStatus="loop">
@@ -32,6 +34,7 @@
 					<td width="50px" ><input type="checkbox" value="${result.goodsId}" /></td>
 					<td><a href="${result.goodsSource}">${result.goodsName}</a></td>
 					<td><a href="${result.shopSource}">${result.shopName}</a></td>
+					<td>${result.destinationName}</td>
 					<td>${result.count}</td>
 					<td>
 						<qqtag:writeBookStatus value="${result.bookStatus}"></qqtag:writeBookStatus>

@@ -19,10 +19,11 @@ public class ShopService implements IShopService{
 	private ShopMapper shopMapper;
 	
 	@Override
-	public ResultDO<List<Shop>> queryShopList(String name) {
+	public ResultDO<List<Shop>> queryShopList(String name,int destinationId) {
 		ResultDO<List<Shop>> resultDO = new ResultDO<List<Shop>>();
 		Map<String,Object> param = new HashMap<String,Object>();
 		param.put("name", name);
+		param.put("destinationId", destinationId);
 		List<Shop> list = shopMapper.selectShopList(param);
 		resultDO.setModel(list);
 		resultDO.setResult(true);

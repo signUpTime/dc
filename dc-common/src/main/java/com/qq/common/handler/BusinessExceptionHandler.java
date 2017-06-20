@@ -39,7 +39,7 @@ public class BusinessExceptionHandler {
 		}else{
 			PrintWriter out=null;
 			try {
-				out = response.getWriter();
+			 	out = response.getWriter();
 				if(ex instanceof BusinessException){
 					BusinessException e=(BusinessException)ex;
 					out.println(e.getMessage());

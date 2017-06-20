@@ -22,7 +22,7 @@
   	SELECT
   		<include refid="BaseSql"></include>
   	FROM
-  		qq_dingcan.t_order
+  		t_order
   	WHERE
   		user_id = #{userId}
   	AND
@@ -35,7 +35,7 @@
   
   <insert id="insertOrder" parameterType="com.qq.common.param.order.OrderParam">
   	INSERT INTO
-  		qq_dingcan.t_order
+  		t_order
   		(
   			user_id,goods_id,total_price,create_time
   		)
@@ -47,7 +47,7 @@
   
   <update id="deleteOrder" parameterType="java.lang.Long">
   	UPDATE
-  		qq_dingcan.t_order
+  		t_order
 	SET
 		is_deleted = 1
 	WHERE
@@ -56,7 +56,7 @@
   
   <update id="updateOrderFood" parameterType="com.qq.common.param.order.OrderParam">
   	UPDATE
-  		qq_dingcan.t_order
+  		t_order
   	SET
   		goods_id = #{goodsId}
   	WHERE
@@ -67,13 +67,16 @@
   	SELECT
   		A.goods_id goodsId,A.book_status bookStatus,sum(1) count,
   		B.name goodsName,B.source_url goodsSource,
-  		C.name shopName,C.source_url shopSource
+  		C.name shopName,C.source_url shopSource,
+	    D.name destinationName
   	FROM
-  		qq_dingcan.t_order A
+  		t_order A
   	LEFT JOIN
-  		qq_dingcan.t_goods B ON A.goods_id = B.id
+  		t_goods B ON A.goods_id = B.id
   	LEFT JOIN
-  		qq_dingcan.t_shop C ON B.shop_id = C.id
+  		t_shop C ON B.shop_id = C.id
+	LEFT JOIN
+	    t_destination D ON C.destination_id = D.id
   	WHERE
   		1=1
   	AND
@@ -90,6 +93,11 @@
   		AND
   			C.name LIKE CONCAT('%',#{shopName},'%')
   	</if>
+	<if test="destinationId !=null and destinationId != 0">
+		AND
+			<!--D.name LIKE CONCAT('%',#{destinationName},'%')-->
+			D.id = #{destinationId}
+	</if>
   	<if test="startTime != null and startTime != '' ">
 	  	AND
 	  		<![CDATA[A.create_time >= #{startTime}]]>  
@@ -104,7 +112,7 @@
   
   <update id="updateTodayOrderBookStatus" parameterType="com.qq.common.param.order.OrderParam">
   	UPDATE
-  		qq_dingcan.t_order
+  		t_order
   	SET
   		book_status = #{bookStatus}
   	WHERE
@@ -127,13 +135,13 @@
   		C.name goodsName,
   		D.name shopName
   	FROM
-  		qq_dingcan.t_order A
+  		t_order A
   	LEFT JOIN
-  		qq_dingcan.t_user B ON A.user_id = B.id
+  		t_user B ON A.user_id = B.id
   	LEFT JOIN
-  		qq_dingcan.t_goods C ON A.goods_id = C.id
+  		t_goods C ON A.goods_id = C.id
   	LEFT JOIN
-  		qq_dingcan.t_shop D ON C.shop_id = D.id
+  		t_shop D ON C.shop_id = D.id
   	WHERE
   		A.is_deleted = 0
   	<if test="status != -1">
@@ -146,12 +154,16 @@
   	</if>
   	<if test="department != null and department !='' ">
   		AND
-  			B.department LIKE CONCAT('%',#{department},'%')  
+  			B.department LIKE CONCAT('%',#{department},'%')
   	</if>
   	<if test="goodsName != null and goodsName !=''">
   		AND
   			C.name LIKE CONCAT('%',#{goodsName},'%') 
   	</if>
+	<if test="destinationId !=null and destinationId !=0">
+		AND
+			D.destination_id = #{destinationId}
+	</if>
   	<if test="startTime != null and startTime != '' ">
 	  	AND
 	  		<![CDATA[A.create_time >= #{startTime}]]>  
@@ -167,7 +179,7 @@
   
   <update id="updateOrderTakeFoodStatus"  parameterType="com.qq.common.param.order.OrderParam">
   	UPDATE
-  		qq_dingcan.t_order
+  		t_order
   	SET
   		status = #{status}
   	WHERE
@@ -183,7 +195,7 @@
   	SELECT
   		<include refid="BaseSql"></include>
   	FROM 
-  		qq_dingcan.t_order
+  		t_order
   	WHERE
   		is_deleted = 0
   	AND

@@ -3,6 +3,7 @@
 <mapper namespace="com.qq.common.data.mapper.ShopMapper" >
   <resultMap type="com.qq.common.domain.Shop" id="BaseResultMap">
   	<result column="id" property="id"/>
+	<result column="destination_id" property="destinationId"/>
   	<result column="name" property="name"/>
   	<result column="address" property="address"/>
   	<result column="description" property="description"/>
@@ -21,7 +22,7 @@
   	SELECT
   		<include refid="BaseSql"></include>
   	FROM
-  		qq_dingcan.t_shop
+  		t_shop
   	WHERE
   		is_deleted = 0
   </select>
@@ -30,19 +31,23 @@
   	SELECT
   		<include refid="BaseSql"></include>
   	FROM
-  		qq_dingcan.t_shop
+  		t_shop
   	WHERE
   		is_deleted = 0
   	<if test="name != null and name != ''">
   		AND
   			name LIKE CONCAT('%',#{name},'%')
   	</if>
+	<if test="destinationId !=null and destinationId !=0">
+		AND
+			t_shop.destination_id = #{destinationId}
+	</if>
   </select>
   
   <insert id="insertShop" parameterType="com.qq.common.domain.Shop">
   	INSERT INTO
-  		qq_dingcan.t_shop(name,address,description,source_url,phone,last_update_time,create_time)
-  	VALUES(#{name},#{address},#{description},#{sourceUrl},#{phone},NOW(),NOW())
+  		t_shop(destination_id,name,address,description,source_url,phone,last_update_time,create_time)
+  	VALUES(#{destinationId},#{name},#{address},#{description},#{sourceUrl},#{phone},NOW(),NOW())
   </insert>
   
   

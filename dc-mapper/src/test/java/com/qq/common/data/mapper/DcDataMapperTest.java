@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.qq.common.domain.Goods;
 
+
 public class DcDataMapperTest {
 	private ApplicationContext applicationContext;
 	

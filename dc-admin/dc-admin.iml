@@ -11,6 +11,18 @@
         </webroots>
       </configuration>
     </facet>
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/com/qq/admin/META-INF/springmvc/springmvc.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/com/qq/admin/META-INF/spring/spring.xml</file>
+        </fileset>
+        <fileset id="fileset2" name="Spring Application Context (2)" removed="false">
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/target/dc-admin/WEB-INF/applicationContext-dao-art.xml</file>
+        </fileset>
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
@@ -22,6 +34,17 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntry type="module" module-name="dc-business" />
     <orderEntry type="module" module-name="dc-common" />
     <orderEntry type="module" module-name="dc-mapper" />
@@ -85,8 +108,10 @@
     <orderEntry type="library" name="Maven: com.qingqing.api:idencoder-util:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.qingqing.api:api-common:1.0.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi:3.12" level="project" />
-    <orderEntry type="library" name="Maven: org.jasig.cas.client:cas-client-core:3.1.12" level="project" />
+    <orderEntry type="library" name="Maven: org.jasig.cas.client:cas-client-core:3.2.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
+    <orderEntry type="library" name="Maven: commons-net:commons-net:3.6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.4" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:jsp-api:2.0" level="project" />
   </component>
 </module>
